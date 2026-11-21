@@ -1,0 +1,24 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="section" id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Servicios</p>
+      <h2>Qué puedo hacer por vos</h2>
+      <p class="muted">
+        Atención profesional en Córdoba Capital, con matrícula vigente y respaldo del Colegio de Martilleros.
+      </p>
+    </div>
+    <div class="cards">
+      {site.services.map((service, index) => (
+        <article class="card">
+          <span class="card-index">{String(index + 1).padStart(2, "0")}</span>
+          <h3>{service.name}</h3>
+          <p class="muted">{service.summary}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

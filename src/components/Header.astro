@@ -1,0 +1,23 @@
+---
+import { site } from "../data/site";
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#inicio">
+      <img class="brand-logo" src={site.colegioLogo.src} alt={site.colegioLogo.alt} width="44" height="44" />
+      <span class="brand-text">
+        <span class="brand-name">{site.brand}</span>
+        <span class="brand-meta">{site.license}</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      {site.nav.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+      <a class="btn btn-gold" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+        WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>

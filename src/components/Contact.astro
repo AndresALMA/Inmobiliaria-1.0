@@ -1,0 +1,37 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="section contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="kicker">Contacto</p>
+      <h2>Hablemos de tu consulta</h2>
+      <p class="lead">
+        Respondé más rápido por WhatsApp. También podés llamar o escribir por correo.
+      </p>
+      <ul class="contact-list">
+        <li>
+          WhatsApp: <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">{site.phoneDisplay}</a>
+        </li>
+        <li>
+          Teléfono: <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+        </li>
+        <li>
+          Correo: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+      </ul>
+      <p class="contact-cta">
+        <a class="btn btn-gold" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+          Abrir WhatsApp
+        </a>
+      </p>
+    </div>
+    <aside class="contact-panel">
+      <img class="colegio-mark" src={site.colegioLogo.src} alt={site.colegioLogo.alt} width="720" height="420" />
+      <p class="serif contact-name">{site.professionalName}</p>
+      <p class="contact-role">{site.title}</p>
+      <p class="contact-license">{site.license} · {site.location}</p>
+    </aside>
+  </div>
+</section>

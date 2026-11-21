@@ -1,0 +1,32 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">{site.location}</p>
+      <h1>{site.title}</h1>
+      <p>{site.tagline}</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+          Consultar por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+      </div>
+    </div>
+    <div class="portrait-frame">
+      <img
+        class="portrait"
+        src={site.photo.src}
+        alt={site.photo.alt}
+        width="840"
+        height="1050"
+      />
+      <div class="portrait-badge">
+        <strong>{site.professionalName}</strong>
+        {site.license}
+      </div>
+    </div>
+  </div>
+</section>
