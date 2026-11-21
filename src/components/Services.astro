@@ -2,13 +2,13 @@
 import { site } from "../data/site";
 ---
 
-<section class="section" id="servicios">
+<section class="section section-services" id="servicios">
   <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Servicios</p>
-      <h2>Qué puedo hacer por vos</h2>
-      <p class="muted">
-        Atención profesional en Córdoba Capital, con matrícula vigente y respaldo del Colegio de Martilleros.
+    <div class="section-head section-head-center">
+      <p class="eyebrow eyebrow-dark">Servicios profesionales</p>
+      <h2>Áreas de atención</h2>
+      <p class="section-lead">
+        Asesoramiento inmobiliario con respaldo de matrícula profesional en Córdoba Capital.
       </p>
     </div>
     <div class="cards">
@@ -16,9 +16,47 @@ import { site } from "../data/site";
         <article class="card">
           <span class="card-index">{String(index + 1).padStart(2, "0")}</span>
           <h3>{service.name}</h3>
-          <p class="muted">{service.summary}</p>
+          <p>{service.summary}</p>
+          <div class="card-line" aria-hidden="true"></div>
         </article>
       ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section-profile" id="perfil">
+  <div class="wrap profile-grid">
+    <div class="profile-image-wrap">
+      <img
+        class="profile-logo"
+        src={site.colegioLogo.src}
+        alt={site.colegioLogo.alt}
+        width="720"
+        height="420"
+        loading="lazy"
+      />
+    </div>
+    <div class="profile-copy">
+      <p class="eyebrow eyebrow-dark">Perfil profesional</p>
+      <h2>Respaldo profesional y atención personalizada</h2>
+      <p class="profile-text">
+        {site.professionalName} brinda servicios inmobiliarios con matrícula profesional,
+        orientados a brindar claridad y confianza en cada consulta.
+      </p>
+      <dl class="profile-details">
+        <div>
+          <dt>Matrícula</dt>
+          <dd>{site.license}</dd>
+        </div>
+        <div>
+          <dt>Profesión</dt>
+          <dd>{site.title}</dd>
+        </div>
+        <div>
+          <dt>Ubicación</dt>
+          <dd>{site.location}</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>

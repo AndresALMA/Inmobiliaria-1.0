@@ -3,29 +3,56 @@ import { site } from "../data/site";
 ---
 
 <section class="hero" id="inicio">
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="wrap hero-grid">
-    <div>
-      <p class="kicker">{site.location}</p>
-      <h1>{site.title}</h1>
-      <p>{site.tagline}</p>
+    <div class="hero-copy">
+      <p class="eyebrow">{site.location} · {site.license}</p>
+      <h1>{site.professionalName}</h1>
+      <p class="hero-title">{site.title}</p>
+      <p class="hero-lead">{site.tagline}</p>
       <div class="hero-actions">
-        <a class="btn btn-gold" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
           Consultar por WhatsApp
         </a>
-        <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+        <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+      </div>
+      <div class="hero-credentials">
+        <div class="credential">
+          <span class="credential-label">Matrícula</span>
+          <span class="credential-value">{site.license}</span>
+        </div>
+        <div class="credential">
+          <span class="credential-label">Contacto</span>
+          <span class="credential-value">{site.phoneDisplay}</span>
+        </div>
       </div>
     </div>
-    <div class="portrait-frame">
-      <img
-        class="portrait"
-        src={site.photo.src}
-        alt={site.photo.alt}
-        width="840"
-        height="1050"
-      />
-      <div class="portrait-badge">
-        <strong>{site.professionalName}</strong>
-        {site.license}
+
+    <div class="hero-visual">
+      <div class="portrait-frame">
+        <img
+          class="portrait"
+          src={site.photo.src}
+          alt={site.photo.alt}
+          width="840"
+          height="1050"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="credential-card">
+        <img
+          class="credential-logo"
+          src={site.colegioLogo.src}
+          alt={site.colegioLogo.alt}
+          width="160"
+          height="160"
+        />
+        <div>
+          <p class="credential-card-name">{site.professionalName}</p>
+          <p class="credential-card-meta">{site.title}</p>
+          <p class="credential-card-meta">{site.license}</p>
+        </div>
       </div>
     </div>
   </div>

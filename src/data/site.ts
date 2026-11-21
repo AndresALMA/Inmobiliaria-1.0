@@ -1,6 +1,6 @@
 const whatsappNumber = "5493516816010";
 const whatsappMessage =
-  "Hola Susana, vi tu web y me gustaría hacer una consulta.";
+  "Hola Susana, vi su sitio web y me gustaría realizar una consulta.";
 
 const publicAsset = (path: string) =>
   `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}`;
@@ -8,13 +8,13 @@ const publicAsset = (path: string) =>
 export const site = {
   brand: "Inmobiliaria Kaloustian Susana",
   professionalName: "Susana Kaloustian",
-  title: "Martillera y Corredora Pública Inmobiliaria",
+  title: "Martillera y Corredor Público Inmobiliario",
   license: "M.P. N° 04-2435",
   location: "Córdoba Capital",
   tagline:
-    "Tasaciones judiciales y particulares, y administración inmobiliaria, con matrícula profesional en Córdoba.",
+    "Asesoramiento inmobiliario con respaldo profesional en tasaciones y administración.",
   description:
-    "Sitio de Inmobiliaria Kaloustian Susana, martillera y corredora pública inmobiliaria. M.P. N° 04-2435, Córdoba Capital.",
+    "Inmobiliaria Kaloustian Susana. Martillera y Corredor Público Inmobiliario. M.P. N° 04-2435. Tasaciones judiciales, tasaciones particulares y administración en Córdoba Capital.",
   email: "susanakaloustian@hotmail.com",
   phoneDisplay: "351 6816010",
   phoneTel: "+543516816010",
@@ -22,14 +22,15 @@ export const site = {
   whatsappUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   photo: {
     src: publicAsset("/images/susana.jpeg"),
-    alt: "Susana Kaloustian, martillera y corredora pública inmobiliaria",
+    alt: "Susana Kaloustian, martillera y corredor público inmobiliario",
   },
   colegioLogo: {
-    src: publicAsset("/images/logo-colegio.jpeg"),
-    alt: "Colegio Profesional de Martilleros Corredores Públicos de la Provincia de Córdoba",
+    src: publicAsset("/images/logo-cpcpi.svg"),
+    alt: "Logo del Colegio Profesional de Martilleros y Corredores Públicos de la Provincia de Córdoba",
   },
   nav: [
     { href: "#inicio", label: "Inicio" },
+    { href: "#perfil", label: "Perfil" },
     { href: "#servicios", label: "Servicios" },
     { href: "#contacto", label: "Contacto" },
   ],
@@ -38,19 +39,19 @@ export const site = {
       id: "tasaciones-judiciales",
       name: "Tasaciones judiciales",
       summary:
-        "Informes de valuación para procesos judiciales, con criterio técnico y respaldo de matrícula profesional.",
+        "Informes de valuación elaborados con criterio técnico y respaldo de matrícula profesional para procesos judiciales.",
     },
     {
       id: "tasaciones-particulares",
       name: "Tasaciones particulares",
       summary:
-        "Valoración de inmuebles para compraventa, sucesiones, garantías u otras decisiones patrimoniales.",
+        "Valoración de inmuebles para operaciones de compraventa, sucesiones, garantías u otras decisiones patrimoniales.",
     },
     {
       id: "administracion",
       name: "Administración",
       summary:
-        "Administración inmobiliaria para propietarios que necesitan orden, seguimiento y trato cercano.",
+        "Gestión y administración de inmuebles con seguimiento responsable y atención personalizada.",
     },
   ],
 } as const;

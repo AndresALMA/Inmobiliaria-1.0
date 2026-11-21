@@ -5,8 +5,19 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="wrap footer-inner">
-    <span>{site.brand} · {site.license}</span>
-    <span>{site.location} · {year}</span>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <p class="footer-name">{site.brand}</p>
+      <p class="footer-meta">{site.title}</p>
+      <p class="footer-meta">{site.license}</p>
+    </div>
+    <div class="footer-contact">
+      <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span>{site.location}</span>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© {year} {site.professionalName}. Todos los derechos reservados.</span>
   </div>
 </footer>

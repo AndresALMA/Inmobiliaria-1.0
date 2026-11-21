@@ -2,36 +2,39 @@
 import { site } from "../data/site";
 ---
 
-<section class="section contact" id="contacto">
+<section class="section section-contact" id="contacto">
   <div class="wrap contact-grid">
-    <div>
-      <p class="kicker">Contacto</p>
-      <h2>Hablemos de tu consulta</h2>
-      <p class="lead">
-        Respondé más rápido por WhatsApp. También podés llamar o escribir por correo.
+    <div class="contact-copy">
+      <p class="eyebrow">Contacto</p>
+      <h2>Realice su consulta</h2>
+      <p class="contact-lead">
+        Para consultas sobre tasaciones o administración de inmuebles, puede comunicarse por WhatsApp, teléfono o correo electrónico.
       </p>
-      <ul class="contact-list">
-        <li>
-          WhatsApp: <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">{site.phoneDisplay}</a>
-        </li>
-        <li>
-          Teléfono: <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
-        </li>
-        <li>
-          Correo: <a href={`mailto:${site.email}`}>{site.email}</a>
-        </li>
-      </ul>
-      <p class="contact-cta">
-        <a class="btn btn-gold" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
-          Abrir WhatsApp
+      <div class="contact-actions">
+        <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+          Escribir por WhatsApp
         </a>
-      </p>
+        <a class="btn btn-secondary" href={`mailto:${site.email}`}>Enviar correo</a>
+      </div>
     </div>
-    <aside class="contact-panel">
-      <img class="colegio-mark" src={site.colegioLogo.src} alt={site.colegioLogo.alt} width="720" height="420" />
-      <p class="serif contact-name">{site.professionalName}</p>
-      <p class="contact-role">{site.title}</p>
-      <p class="contact-license">{site.license} · {site.location}</p>
-    </aside>
+
+    <div class="contact-panel">
+      <div class="contact-item">
+        <span class="contact-label">WhatsApp / Teléfono</span>
+        <a class="contact-value" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">{site.phoneDisplay}</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Correo electrónico</span>
+        <a class="contact-value" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Matrícula</span>
+        <span class="contact-value">{site.license}</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Ubicación</span>
+        <span class="contact-value">{site.location}</span>
+      </div>
+    </div>
   </div>
 </section>
