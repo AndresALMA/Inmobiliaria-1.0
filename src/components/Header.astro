@@ -2,24 +2,22 @@
 import { site } from "../data/site";
 ---
 
-<header class="site-header bg-primary text-white">
-  <div class="contact-bar flex justify-between items-center px-4 py-2 bg-dark">
-    <span class="text-sm">NMOBILIARIA KALOUSTIAN SUSANA M.P N° 04-2435 | MARTILLERA Y CORREDOR PÚBLICO INMOBILIARIO</span>
-    <span class="text-sm">Correo: susanakaloustian@hotmail.com | Tel: 351 6816010</span>
-  </div>
-  <div class="wrap header-inner flex justify-between items-center px-4 py-4">
-    <a class="brand" href="#inicio" aria-label="${site.brand}, inicio">
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#inicio" aria-label={`${site.brand}, inicio`}>
       <span class="brand-mark">SK</span>
       <span class="brand-text">
-        <span class="brand-name">${site.brand}</span>
-        <span class="brand-meta">${site.license} · ${site.location}</span>
+        <span class="brand-name">{site.brand}</span>
+        <span class="brand-meta">{site.license} · {site.location}</span>
       </span>
     </a>
     <nav class="nav" aria-label="Principal">
       {site.nav.map((item) => (
         <a href={item.href}>{item.label}</a>
       ))}
-      <a class="btn btn-primary btn-nav" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Contactar</a>
+      <a class="btn btn-primary btn-nav" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+        Contactar
+      </a>
     </nav>
   </div>
 </header>
