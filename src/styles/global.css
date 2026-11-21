@@ -109,12 +109,15 @@ dd {
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid transparent;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(16, 27, 43, 0.06);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 27, 43, 0.12);
 }
 
 .btn:focus-visible,
@@ -250,7 +253,9 @@ dd {
 .hero {
   position: relative;
   overflow: clip;
-  background: linear-gradient(135deg, var(--surface-dark) 0%, #18283d 55%, #21344d 100%);
+  background:
+    linear-gradient(115deg, rgba(16, 27, 43, 0.88) 0%, rgba(24, 40, 61, 0.78) 52%, rgba(16, 27, 43, 0.68) 100%),
+    url("/Inmobiliaria-1.0/images/hero-property.jpg") center/cover no-repeat;
   color: var(--text-inverse);
   padding: 5.5rem 0 0;
 }
@@ -259,7 +264,7 @@ dd {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 75% 30%, rgba(179, 138, 82, 0.16), transparent 45%),
+    radial-gradient(ellipse at 75% 30%, rgba(179, 138, 82, 0.18), transparent 45%),
     radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.04), transparent 40%),
     linear-gradient(180deg, rgba(255,255,255,0.02), transparent 30%);
   pointer-events: none;
@@ -374,11 +379,14 @@ dd {
 }
 
 .credential-logo {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  object-position: center;
   flex: 0 0 auto;
   background: #fff;
+  padding: 0.2rem;
+  border: 1px solid rgba(24, 34, 49, 0.08);
 }
 
 .credential-card-name {
@@ -447,6 +455,7 @@ dd {
   background: var(--surface);
   padding: 2.5rem 2rem;
   border: 1px solid rgba(24, 34, 49, 0.06);
+  border-radius: var(--radius);
   box-shadow: 0 1px 0 rgba(24, 34, 49, 0.04);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
@@ -513,13 +522,16 @@ dd {
   background: var(--bg);
   padding: 2.5rem;
   border: 1px solid rgba(24, 34, 49, 0.06);
+  border-radius: var(--radius);
 }
 
 .profile-logo {
   width: 100%;
   height: auto;
-  max-height: 360px;
-  object-fit: contain;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .profile-text {
@@ -560,7 +572,10 @@ dd {
 
 /* Contact */
 .section-contact {
-  background: linear-gradient(180deg, #18283d 0%, var(--surface-dark) 100%);
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(24, 40, 61, 0.92) 0%, rgba(16, 27, 43, 0.94) 100%),
+    url("/Inmobiliaria-1.0/images/contact-property.jpg") center/cover no-repeat;
   color: var(--text-inverse);
 }
 
@@ -607,6 +622,7 @@ dd {
   padding: 2.5rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--line-inverse);
+  border-radius: var(--radius);
 }
 
 .contact-item {
@@ -624,13 +640,21 @@ dd {
 }
 
 .contact-label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(179, 138, 82, 0.9);
   margin-bottom: 0.4rem;
+}
+
+.contact-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+  filter: saturate(0.9);
 }
 
 .contact-value {
@@ -755,8 +779,8 @@ a.contact-value:hover {
 
   .nav {
     width: 100%;
-    justify-content: space-between;
-    gap: 0.75rem;
+    justify-content: flex-start;
+    gap: 0.7rem 1.2rem;
     flex-wrap: wrap;
   }
 
