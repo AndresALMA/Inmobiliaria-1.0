@@ -1,8 +1,8 @@
 ---
 const options = [
-  { id: "op1", label: "Vista 1" },
-  { id: "op2", label: "Vista 2" },
-  { id: "op3", label: "Vista 3" },
+  { id: "op1", label: "Opción 1" },
+  { id: "op2", label: "Opción 2" },
+  { id: "op3", label: "Opción 3" },
 ];
 
 const themes = [
@@ -21,8 +21,8 @@ const fonts = [
 <div class="option-bar" id="option-bar" data-option-bar>
   <div class="wrap option-bar-inner">
     <div class="option-bar-group">
-      <span class="option-bar-label">Vista</span>
-      <div class="option-bar-actions" role="radiogroup" aria-label="Seleccionar vista">
+      <span class="option-bar-label">Opciones</span>
+      <div class="option-bar-actions" role="radiogroup" aria-label="Seleccionar opción">
         {options.map((option, index) => (
           <button
             type="button"
@@ -88,7 +88,7 @@ const fonts = [
       ))}
     </div>
 
-    <button type="button" class="option-bar-hide" data-option-hide aria-label="Ocultar selector de vistas">
+    <button type="button" class="option-bar-hide" data-option-hide aria-label="Ocultar selector de opciones">
       Ocultar
     </button>
   </div>
@@ -99,9 +99,9 @@ const fonts = [
   class="option-bar-reopen"
   id="option-bar-reopen"
   data-option-reopen
-  aria-label="Mostrar selector de vistas"
+  aria-label="Mostrar selector de opciones"
 >
-  Vistas
+  Opciones
 </button>
 
 <script>

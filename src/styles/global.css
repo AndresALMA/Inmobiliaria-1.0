@@ -1331,10 +1331,13 @@ a.contact-value:hover {
 }
 
 @media (max-width: 760px) {
-  .option-bar-inner { flex-wrap: wrap; gap: 0.5rem; }
-  .option-bar-hide { margin-left: 0; }
-  .option-bar-actions { width: 100%; }
-  .option-btn { flex: 1 1 auto; }
+  .option-bar-inner { flex-wrap: wrap; gap: 0.4rem 0.5rem; padding: 0.4rem 0; align-items: center; }
+  .option-bar-group { gap: 0.35rem; min-width: 0; }
+  .option-bar-group:first-child { flex: 1 1 100%; }
+  .option-bar-label { display: none; }
+  .option-bar-actions { width: auto; flex: 1 1 auto; display: flex; }
+  .option-btn { flex: 1 1 0; min-height: 2rem; padding: 0.3rem 0.45rem; font-size: 0.67rem; }
+  .option-bar-hide { margin-left: auto; min-height: 2rem; padding: 0.3rem 0.6rem; font-size: 0.67rem; white-space: nowrap; }
   .option-bar-reopen { top: auto; bottom: 0.75rem; right: 0.75rem; }
   .op2-hero, .op3-hero { padding: 3.5rem 0; }
   .op2-actions, .op3-actions { flex-direction: column; align-items: stretch; }
@@ -1452,9 +1455,13 @@ body[data-font="warm"],
 .option-panel[data-theme="forest"] .op3-property-link { border-bottom-color: #c8956c; }
 
 @media (max-width: 760px) {
-  .option-bar-themes, .option-bar-fonts { padding-left: 0; border-left: 0; width: 100%; }
+  .option-bar-themes, .option-bar-fonts { padding-left: 0; border-left: 0; width: auto; flex: 1 1 calc(50% - 0.25rem); }
+  .option-bar-themes .option-theme-group.is-visible,
+  .option-bar-fonts .option-font-group.is-visible { display: flex; width: 100%; gap: 0.3rem; }
   .option-theme-btn .theme-label, .option-font-btn .font-label { display: none; }
-  .option-theme-btn, .option-font-btn { padding: 0.4rem 0.55rem; }
+  .option-theme-btn, .option-font-btn { flex: 1 1 0; justify-content: center; min-height: 2rem; padding: 0.3rem 0.35rem; }
+  .theme-swatch { width: 0.8rem; height: 0.8rem; }
+  .font-sample { width: 1.3rem; height: 1.3rem; font-size: 0.76rem; }
 }
 
 /* Footer */
