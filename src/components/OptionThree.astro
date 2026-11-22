@@ -393,13 +393,24 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
         if (op3Panel.hidden || op3Panel.getAttribute("aria-hidden") !== "false") return;
         if (reduceMotion) {
           scrollVideo.pause();
-          scrollVideo.removeAttribute("autoplay");
+          scrollVideo.currentTime = 0;
           return;
         }
         if (isMobileVideo()) {
           scrollVideo.loop = true;
+          scrollVideo.muted = true;
           const playPromise = scrollVideo.play();
-          if (playPromise && typeof playPromise.catch === "function") playPromise.catch(() => {});
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {
+              const resume = () => {
+                scrollVideo.play().catch(() => {});
+                window.removeEventListener("touchstart", resume);
+                window.removeEventListener("click", resume);
+              };
+              window.addEventListener("touchstart", resume, { passive: true, once: true });
+              window.addEventListener("click", resume, { once: true });
+            });
+          }
           return;
         }
         scrollVideo.loop = false;

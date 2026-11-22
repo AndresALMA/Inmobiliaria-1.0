@@ -865,10 +865,7 @@ body.option-bar-hidden .site-header {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-bg-video {
-    display: none;
-  }
-  .op3-scroll-video-bg {
-    display: none;
+    transition: none;
   }
 }
 
@@ -1966,8 +1963,7 @@ body[data-font="warm"],
     transition-duration: 0.01ms !important;
   }
 
-  .op3-scroll-video-bg,
-  .hero-bg-videos {
-    display: none !important;
+  .hero-bg-video {
+    transition: none !important;
   }
 }
