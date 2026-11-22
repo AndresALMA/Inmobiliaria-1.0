@@ -1,0 +1,152 @@
+---
+import { site } from "../data/site";
+---
+
+<div class="option-panel" data-option-panel="op2" data-theme="luxury" data-font="editorial" hidden aria-hidden="true">
+  <section class="op2-hero" id="inicio-op2">
+    <div class="op2-hero-bg" aria-hidden="true"></div>
+    <div class="wrap op2-hero-grid">
+      <div class="op2-photo-col">
+        <div class="op2-portrait-card">
+          <img
+            class="op2-portrait"
+            src={site.photo.src}
+            alt={site.photo.alt}
+            width="840"
+            height="1050"
+            loading="eager"
+          />
+          <div class="op2-portrait-badge">
+            <img src={site.colegioLogo.src} alt={site.colegioLogo.alt} width="56" height="56" />
+            <div>
+              <strong>{site.license}</strong>
+              <span>Córdoba Capital</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="op2-copy-col">
+        <p class="op2-kicker">Estudio Inmobiliario</p>
+        <h1 class="op2-title">{site.professionalName}</h1>
+        <p class="op2-subtitle">{site.title}</p>
+        <p class="op2-lead">
+          {site.tagline}
+        </p>
+        <div class="op2-actions">
+          <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+          <a class="btn op2-btn-outline" href="#contacto-op2">Contactar</a>
+        </div>
+        <div class="op2-trust">
+          <div class="op2-trust-item">
+            <span class="op2-trust-label">Enfoque</span>
+            <span class="op2-trust-value">Criterio técnico y humano</span>
+          </div>
+          <div class="op2-trust-item">
+            <span class="op2-trust-label">Atención</span>
+            <span class="op2-trust-value">Personalizada y directa</span>
+          </div>
+          <div class="op2-trust-item">
+            <span class="op2-trust-label">Respaldo</span>
+            <span class="op2-trust-value">Matrícula profesional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section op2-services" id="servicios-op2">
+    <div class="wrap">
+      <div class="op2-section-head op2-section-head-center">
+        <p class="op2-kicker">Servicios</p>
+        <h2>Soluciones inmobiliarias con respaldo profesional</h2>
+        <p class="op2-section-lead">Cada servicio está pensado para brindarte claridad, seguridad y acompañamiento en decisiones importantes.</p>
+      </div>
+      <div class="op2-service-grid">
+        {site.services.map((service, index) => (
+          <article class="op2-service-card">
+            <div class="op2-service-media">
+              <img src={service.image} alt={service.alt} loading="lazy" width="1200" height="800" />
+              <span class="op2-service-num">0{index + 1}</span>
+            </div>
+            <div class="op2-service-body">
+              <p class="op2-service-tag">{service.detail}</p>
+              <h3>{service.name}</h3>
+              <p>{service.summary}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section op2-profile" id="perfil-op2">
+    <div class="wrap op2-profile-grid">
+      <div class="op2-profile-copy">
+        <p class="op2-kicker">Perfil profesional</p>
+        <h2>Confianza, criterio y acompañamiento</h2>
+        <p class="op2-profile-text">{site.description}</p>
+        <div class="op2-values" aria-label="Valores de trabajo">
+          <span class="op2-value">Transparencia</span>
+          <span class="op2-value">Rigor técnico</span>
+          <span class="op2-value">Compromiso</span>
+        </div>
+        <dl class="op2-details">
+          <div><dt>Nombre</dt><dd>{site.professionalName}</dd></div>
+          <div><dt>Título</dt><dd>{site.title}</dd></div>
+          <div><dt>Matrícula</dt><dd>{site.license}</dd></div>
+          <div><dt>Ubicación</dt><dd>{site.location}</dd></div>
+        </dl>
+      </div>
+      <div class="op2-profile-visual">
+        <div class="op2-profile-image-frame">
+          <img
+            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80"
+            alt="Interior de propiedad moderna"
+            loading="lazy"
+            width="900"
+            height="1100"
+          />
+        </div>
+        <div class="op2-profile-note">
+          <p class="op2-profile-note-title">Atención en Córdoba Capital</p>
+          <p>Asesoramiento claro, humano y profesional para operaciones, tasaciones y administración de inmuebles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section op2-contact" id="contacto-op2">
+    <div class="wrap op2-contact-grid">
+      <div>
+        <p class="op2-kicker op2-kicker-light">Contacto</p>
+        <h2>Conversemos sobre tu próxima decisión inmobiliaria</h2>
+        <p class="op2-contact-lead">
+          Estoy disponible para responder consultas, coordinar tasaciones y brindarte asesoramiento profesional.
+        </p>
+        <div class="op2-actions">
+          <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn op2-btn-outline-light" href={`mailto:${site.email}`}>Enviar correo</a>
+        </div>
+      </div>
+      <div class="op2-contact-card">
+        <div class="op2-contact-row">
+          <span class="op2-contact-label">Teléfono</span>
+          <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+        </div>
+        <div class="op2-contact-row">
+          <span class="op2-contact-label">Correo</span>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+        <div class="op2-contact-row">
+          <span class="op2-contact-label">Ubicación</span>
+          <span>{site.location}</span>
+        </div>
+        <div class="op2-contact-row">
+          <span class="op2-contact-label">Matrícula</span>
+          <span>{site.license}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,18 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import OptionSelector from "../components/OptionSelector.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Services from "../components/Services.astro";
 import Contact from "../components/Contact.astro";
+import OptionTwo from "../components/OptionTwo.astro";
+import OptionThree from "../components/OptionThree.astro";
 import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout>
+  <OptionSelector />
   <Header />
   <main>
-    <Hero />
-    <Services />
-    <Contact />
+    <div class="option-panel" data-option-panel="op1" data-theme="luxury" data-font="editorial" aria-hidden="false">
+      <Hero />
+      <Services />
+      <Contact />
+    </div>
+    <OptionTwo />
+    <OptionThree />
   </main>
   <Footer />
 </BaseLayout>

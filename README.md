@@ -1,4 +1,4 @@
-# Inmobiliaria Kaloustian Susana
+# Estudio Inmobiliario Kaloustian
 
 Landing page de presencia digital para Susana Kaloustian, martillera y corredora pública inmobiliaria de Córdoba Capital (M.P. N° 04-2435).
 

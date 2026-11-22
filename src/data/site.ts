@@ -6,15 +6,15 @@ const publicAsset = (path: string) =>
   `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}`;
 
 export const site = {
-  brand: "Inmobiliaria Kaloustian Susana",
+  brand: "Estudio Inmobiliario Kaloustian",
   professionalName: "Susana Kaloustian",
   title: "Martillera y Corredor Público Inmobiliario",
   license: "M.P. N° 04-2435",
   location: "Córdoba Capital",
   tagline:
-    "Asesoramiento inmobiliario con respaldo profesional en tasaciones y administración.",
+    "Acompañamiento inmobiliario con respaldo profesional, criterio técnico y atención cercana en cada operación.",
   description:
-    "Inmobiliaria Kaloustian Susana. Martillera y Corredor Público Inmobiliario. M.P. N° 04-2435. Tasaciones judiciales, tasaciones particulares y administración en Córdoba Capital.",
+    "En Estudio Inmobiliario Kaloustian, Susana Kaloustian —Martillera y Corredor Público Inmobiliario (M.P. N° 04-2435)— brinda asesoramiento claro y confiable en tasaciones judiciales, tasaciones particulares y administración de inmuebles en Córdoba Capital.",
   email: "susanakaloustian@hotmail.com",
   phoneDisplay: "351 6816010",
   phoneTel: "+543516816010",
@@ -39,19 +39,31 @@ export const site = {
       id: "tasaciones-judiciales",
       name: "Tasaciones judiciales",
       summary:
-        "Informes de valuación elaborados con criterio técnico y respaldo de matrícula profesional para procesos judiciales.",
+        "Informes claros y fundamentados, elaborados con rigor técnico para respaldar procesos con seguridad y precisión.",
+      image:
+        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
+      alt: "Documentos y firma de un informe profesional",
+      detail: "Rigor técnico y sustento sólido",
     },
     {
       id: "tasaciones-particulares",
       name: "Tasaciones particulares",
       summary:
-        "Valoración de inmuebles para operaciones de compraventa, sucesiones, garantías u otras decisiones patrimoniales.",
+        "Una valoración confiable para tomar decisiones patrimoniales importantes con información clara y criterio profesional.",
+      image:
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
+      alt: "Entrega de llaves de una propiedad",
+      detail: "Claridad para decidir con confianza",
     },
     {
       id: "administracion",
       name: "Administración",
       summary:
-        "Gestión y administración de inmuebles con seguimiento responsable y atención personalizada.",
+        "Seguimiento cercano, comunicación transparente y organización en cada etapa para cuidar el patrimonio con tranquilidad.",
+      image:
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      alt: "Edificios residenciales y comerciales modernos",
+      detail: "Tranquilidad y gestión responsable",
     },
   ],
 } as const;

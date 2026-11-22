@@ -1,0 +1,364 @@
+---
+import { site } from "../data/site";
+
+const featuredProperties = [
+  {
+    title: "Residencia familiar en Nueva Córdoba",
+    price: "USD 185.000",
+    detail: "3 dormitorios · 2 baños · Patio y cochera",
+    status: "Venta",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80",
+    alt: "Fachada de residencia familiar moderna",
+    lat: -31.4245,
+    lng: -64.183,
+    location: "Nueva Córdoba",
+  },
+  {
+    title: "Departamento luminoso en el centro",
+    price: "$ 450.000 / mes",
+    detail: "2 dormitorios · Balcón · Ubicación estratégica",
+    status: "Alquiler",
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+    alt: "Living luminoso de departamento moderno",
+    lat: -31.4167,
+    lng: -64.1833,
+    location: "Centro, Córdoba",
+  },
+  {
+    title: "Dúplex contemporáneo en zona norte",
+    price: "USD 210.000",
+    detail: "3 dormitorios · Quincho · Apto crédito",
+    status: "Venta",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+    alt: "Exterior de dúplex contemporáneo",
+    lat: -31.375,
+    lng: -64.22,
+    location: "Zona Norte, Córdoba",
+  },
+];
+
+const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C%20Argentina";
+---
+
+<div class="option-panel" data-option-panel="op3" data-theme="luxury" data-font="editorial" hidden aria-hidden="true">
+  <section class="op3-hero" id="inicio-op3">
+    <div class="op3-hero-bg" aria-hidden="true"></div>
+    <div class="wrap op3-hero-grid">
+      <div class="op3-hero-copy">
+        <p class="op3-eyebrow">Experiencia premium</p>
+        <h1 class="op3-title">Encuentre el lugar donde quiere estar</h1>
+        <p class="op3-lead">
+          Asesoramiento inmobiliario profesional con una experiencia moderna: propiedades destacadas, presencia local y atención personalizada en {site.location}.
+        </p>
+        <div class="op3-actions">
+          <a class="btn btn-primary" href="#propiedades-op3">Ver propiedades</a>
+          <a class="btn op3-btn-glass" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+        </div>
+        <div class="op3-hero-highlights" aria-label="Puntos destacados">
+          <div class="op3-highlight"><strong>Atención</strong><span>Personalizada</span></div>
+          <div class="op3-highlight"><strong>Gestión</strong><span>Profesional</span></div>
+          <div class="op3-highlight"><strong>Respaldo</strong><span>Matriculado</span></div>
+        </div>
+        <div class="op3-agent-strip">
+          <img src={site.photo.src} alt={site.photo.alt} width="64" height="64" loading="eager" />
+          <div>
+            <strong>{site.professionalName}</strong>
+            <span>{site.title} · {site.license}</span>
+          </div>
+        </div>
+      </div>
+      <div class="op3-hero-visual">
+        <div class="op3-hero-image-main">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80"
+            alt="Interior de propiedad premium"
+            width="1400"
+            height="1000"
+            loading="eager"
+          />
+        </div>
+        <div class="op3-hero-image-float">
+          <img
+            src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80"
+            alt="Detalle de cocina moderna"
+            width="800"
+            height="600"
+            loading="lazy"
+          />
+        </div>
+        <div class="op3-floating-stat">
+          <strong>+15</strong>
+          <span>Años de trayectoria</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section op3-properties" id="propiedades-op3">
+    <div class="wrap">
+      <div class="op3-section-head op3-section-head-center">
+        <div>
+          <p class="op3-eyebrow op3-eyebrow-dark">Propiedades destacadas</p>
+          <h2>Oportunidades seleccionadas en Córdoba</h2>
+        </div>
+        <p class="op3-section-note">Una selección curada para descubrir propiedades con potencial, excelente ubicación y gran proyección.</p>
+      </div>
+      <div class="op3-cards">
+        {featuredProperties.map((property) => (
+          <article class="op3-property-card">
+            <div class="op3-property-media">
+              <img src={property.image} alt={property.alt} loading="lazy" width="1200" height="800" />
+              <span class="op3-property-status">{property.status}</span>
+            </div>
+            <div class="op3-property-body">
+              <p class="op3-property-price">{property.price}</p>
+              <h3>{property.title}</h3>
+              <p class="op3-property-detail">{property.detail}</p>
+              <a class="op3-property-link" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                Consultar esta propiedad
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section op3-about" id="perfil-op3">
+    <div class="wrap op3-about-grid">
+      <div class="op3-about-images">
+        <img
+          class="op3-about-main"
+          src={site.photo.src}
+          alt={site.photo.alt}
+          width="840"
+          height="1050"
+          loading="lazy"
+        />
+        <img
+          class="op3-about-inset"
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80"
+          alt="Espacio de trabajo profesional"
+          width="900"
+          height="700"
+          loading="lazy"
+        />
+      </div>
+      <div class="op3-about-copy">
+        <p class="op3-eyebrow op3-eyebrow-dark">Perfil profesional</p>
+        <h2>Asesoramiento serio, cercano y transparente</h2>
+        <p>{site.description}</p>
+        <div class="op3-service-pills" aria-label="Propuesta de valor">
+          <span class="op3-pill">Criterio técnico</span>
+          <span class="op3-pill">Atención cercana</span>
+          <span class="op3-pill">Gestión confiable</span>
+        </div>
+        <div class="op3-credentials">
+          <div><span class="op3-cred-label">Matrícula</span><strong>{site.license}</strong></div>
+          <div><span class="op3-cred-label">Ubicación</span><strong>{site.location}</strong></div>
+          <div><span class="op3-cred-label">Contacto</span><strong>{site.phoneDisplay}</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section op3-local" id="servicios-op3">
+    <div class="wrap op3-local-grid">
+      <div class="op3-map-card">
+        <div class="op3-map-head">
+          <div>
+            <p class="op3-eyebrow op3-eyebrow-dark">Presencia local</p>
+            <h2>Oportunidades seleccionadas en Córdoba</h2>
+          </div>
+          <a href={mapLink} target="_blank" rel="noopener noreferrer">Abrir mapa</a>
+        </div>
+        <div class="op3-map-layout">
+          <div class="op3-map-frame" id="op3-property-map" aria-label="Mapa de propiedades destacadas"></div>
+          <div class="op3-map-listings" aria-label="Propiedades en el mapa">
+            {featuredProperties.map((property, index) => (
+              <button
+                type="button"
+                class:list={["op3-map-listing", { "is-active": index === 0 }]}
+                data-map-listing={index}
+                data-lat={property.lat}
+                data-lng={property.lng}
+              >
+                <img src={property.image} alt={property.alt} loading="lazy" width="160" height="120" />
+                <div class="op3-map-listing-body">
+                  <span class="op3-map-listing-status">{property.status}</span>
+                  <strong>{property.title}</strong>
+                  <span class="op3-map-listing-price">{property.price}</span>
+                  <span class="op3-map-listing-location">{property.location}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="op3-services-panel">
+        <p class="op3-eyebrow op3-eyebrow-dark">Servicios</p>
+        <h3>Todo lo que necesita, en un solo lugar</h3>
+        <div class="op3-service-list">
+          {site.services.map((service, index) => (
+            <article class="op3-service-item">
+              <div class="op3-service-thumb">
+                <img src={service.image} alt={service.alt} loading="lazy" width="400" height="300" />
+              </div>
+              <div class="op3-service-copy">
+                <span class="op3-service-idx">0{index + 1}</span>
+                <h4>{service.name}</h4>
+                <p>{service.detail}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section op3-contact" id="contacto-op3">
+    <div class="wrap op3-contact-grid">
+      <div>
+        <p class="op3-eyebrow">Contacto</p>
+        <h2>¿Listo para dar el próximo paso?</h2>
+        <p class="op3-contact-lead">
+          Ya sea que necesite tasar, comprar, vender o administrar una propiedad, puedo ayudarle con un asesoramiento claro y profesional.
+        </p>
+        <div class="op3-actions">
+          <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn op3-btn-glass" href={`mailto:${site.email}`}>Enviar correo</a>
+        </div>
+        <div class="op3-contact-card">
+          <div class="op3-contact-person">
+            <img src={site.photo.src} alt={site.photo.alt} width="72" height="72" loading="lazy" />
+            <div>
+              <strong>{site.professionalName}</strong>
+              <span>{site.license}</span>
+            </div>
+          </div>
+          <div class="op3-contact-row"><span>Teléfono</span><a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a></div>
+          <div class="op3-contact-row"><span>Correo</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
+          <div class="op3-contact-row"><span>Ciudad</span><span>{site.location}</span></div>
+        </div>
+      </div>
+
+      <div class="op3-register-card">
+        <p class="op3-eyebrow op3-eyebrow-dark">Registro</p>
+        <h3>Cree su cuenta</h3>
+        <p class="op3-register-lead">Regístrese para recibir novedades, oportunidades seleccionadas y asesoramiento personalizado.</p>
+        <form class="op3-register-form" data-op3-register novalidate>
+          <div class="op3-form-field">
+            <label for="reg-name">Nombre y apellido</label>
+            <input id="reg-name" name="name" type="text" autocomplete="name" required minlength="3" maxlength="80" placeholder="Ej.: Ana Pérez" />
+            <p class="op3-form-error" data-error-for="reg-name" aria-live="polite"></p>
+          </div>
+          <div class="op3-form-field">
+            <label for="reg-email">Correo electrónico</label>
+            <input id="reg-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="Ej.: ana@email.com" />
+            <p class="op3-form-error" data-error-for="reg-email" aria-live="polite"></p>
+          </div>
+          <div class="op3-form-field">
+            <label for="reg-phone">Teléfono</label>
+            <input id="reg-phone" name="phone" type="tel" autocomplete="tel" required pattern="[\d\s()+-]{8,20}" maxlength="20" placeholder="Ej.: +54 351 000 0000" />
+            <p class="op3-form-error" data-error-for="reg-phone" aria-live="polite"></p>
+          </div>
+          <div class="op3-form-field">
+            <label for="reg-password">Contraseña</label>
+            <input id="reg-password" name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="64" placeholder="Mínimo 8 caracteres" />
+            <p class="op3-form-error" data-error-for="reg-password" aria-live="polite"></p>
+          </div>
+          <div class="op3-form-field">
+            <label for="reg-password-confirm">Confirmar contraseña</label>
+            <input id="reg-password-confirm" name="passwordConfirm" type="password" autocomplete="new-password" required minlength="8" maxlength="64" placeholder="Repita la contraseña" />
+            <p class="op3-form-error" data-error-for="reg-password-confirm" aria-live="polite"></p>
+          </div>
+          <label class="op3-form-check">
+            <input id="reg-terms" name="terms" type="checkbox" required />
+            <span>Acepto recibir información y confirmo que los datos ingresados son correctos.</span>
+          </label>
+          <p class="op3-form-error" data-error-for="reg-terms" aria-live="polite"></p>
+          <button type="submit" class="btn btn-primary op3-register-submit">Crear cuenta</button>
+          <p class="op3-form-status" data-register-status aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script is:inline define:vars={{ featuredProperties }}>
+  (() => {
+    const mapEl = document.getElementById("op3-property-map");
+    if (!mapEl || !window.L) return;
+
+    const map = L.map(mapEl, { scrollWheelZoom: false }).setView([-31.4167, -64.1833], 12);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    const markers = featuredProperties.map((p, i) => {
+      const marker = L.marker([p.lat, p.lng]).addTo(map);
+      marker.bindPopup(`<strong>${p.title}</strong><br>${p.price}<br><small>${p.location}</small>`);
+      return marker;
+    });
+
+    const listings = Array.from(document.querySelectorAll("[data-map-listing]"));
+    const setActive = (index) => {
+      listings.forEach((el) => el.classList.toggle("is-active", Number(el.dataset.mapListing) === index));
+      const p = featuredProperties[index];
+      if (p) {
+        map.setView([p.lat, p.lng], 13, { animate: true });
+        markers[index].openPopup();
+      }
+    };
+    listings.forEach((el) => el.addEventListener("click", () => setActive(Number(el.dataset.mapListing))));
+    if (markers[0]) setActive(0);
+    const refreshMap = () => setTimeout(() => map.invalidateSize(), 150);
+    refreshMap();
+    const panel = mapEl.closest('[data-option-panel]');
+    if (panel) {
+      new MutationObserver(() => {
+        if (!panel.hidden && panel.getAttribute('aria-hidden') === 'false') refreshMap();
+      }).observe(panel, { attributes: true, attributeFilter: ['hidden', 'aria-hidden'] });
+    }
+
+    const form = document.querySelector("[data-op3-register]");
+    if (!form) return;
+    const status = form.querySelector("[data-register-status]");
+    const showError = (id, msg) => {
+      const el = form.querySelector(`[data-error-for="${id}"]`);
+      if (el) el.textContent = msg;
+    };
+    const clearErrors = () => {
+      form.querySelectorAll(".op3-form-error").forEach((el) => (el.textContent = ""));
+      if (status) { status.textContent = ""; status.className = "op3-form-status"; }
+    };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      clearErrors();
+      const name = form.querySelector("#reg-name");
+      const email = form.querySelector("#reg-email");
+      const phone = form.querySelector("#reg-phone");
+      const pass = form.querySelector("#reg-password");
+      const pass2 = form.querySelector("#reg-password-confirm");
+      const terms = form.querySelector("#reg-terms");
+      let ok = true;
+
+      if (!name.value.trim() || name.value.trim().length < 3) { showError("reg-name", "Ingrese su nombre y apellido (mínimo 3 caracteres)."); ok = false; }
+      if (!email.validity.valid) { showError("reg-email", "Ingrese un correo electrónico válido."); ok = false; }
+      if (!phone.validity.valid) { showError("reg-phone", "Ingrese un teléfono válido (8 a 20 caracteres)."); ok = false; }
+      if (!pass.value || pass.value.length < 8) { showError("reg-password", "La contraseña debe tener al menos 8 caracteres."); ok = false; }
+      if (pass2.value !== pass.value) { showError("reg-password-confirm", "Las contraseñas no coinciden."); ok = false; }
+      if (!terms.checked) { showError("reg-terms", "Debe aceptar la condición para continuar."); ok = false; }
+
+      if (!ok) {
+        if (status) { status.textContent = "Revise los campos marcados."; status.classList.add("is-error"); }
+        return;
+      }
+      form.reset();
+      if (status) { status.textContent = "Registro enviado correctamente. Nos pondremos en contacto a la brevedad."; status.classList.add("is-success"); }
+    });
+  })();
+</script>

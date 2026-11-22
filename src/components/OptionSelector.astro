@@ -1,0 +1,376 @@
+---
+const options = [
+  { id: "op1", label: "Vista 1" },
+  { id: "op2", label: "Vista 2" },
+  { id: "op3", label: "Vista 3" },
+];
+
+const themes = [
+  { id: "luxury", label: "Navy & Gold" },
+  { id: "terra", label: "Tierra" },
+  { id: "forest", label: "Bosque" },
+];
+
+const fonts = [
+  { id: "editorial", label: "Editorial" },
+  { id: "modern", label: "Moderna" },
+  { id: "warm", label: "Cercana" },
+];
+---
+
+<div class="option-bar" id="option-bar" data-option-bar>
+  <div class="wrap option-bar-inner">
+    <div class="option-bar-group">
+      <span class="option-bar-label">Vista</span>
+      <div class="option-bar-actions" role="radiogroup" aria-label="Seleccionar vista">
+        {options.map((option, index) => (
+          <button
+            type="button"
+            class:list={["option-btn", { "is-active": index === 0 }]}
+            data-option-btn={option.id}
+            aria-pressed={index === 0 ? "true" : "false"}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="option-bar-group option-bar-themes">
+      <span class="option-bar-label">Estilo</span>
+      {options.map((option, optIndex) => (
+        <div
+          class:list={["option-theme-group", { "is-visible": optIndex === 0 }]}
+          data-theme-group={option.id}
+          role="radiogroup"
+          aria-label={`Estilo para ${option.label}`}
+        >
+          {themes.map((theme, themeIndex) => (
+            <button
+              type="button"
+              class:list={["option-theme-btn", `theme-swatch-${theme.id}`, { "is-active": themeIndex === 0 }]}
+              data-theme-btn={theme.id}
+              data-theme-for={option.id}
+              aria-pressed={themeIndex === 0 ? "true" : "false"}
+              title={theme.label}
+            >
+              <span class="theme-swatch" aria-hidden="true"></span>
+              <span class="theme-label">{theme.label}</span>
+            </button>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <div class="option-bar-group option-bar-fonts">
+      <span class="option-bar-label">Tipo</span>
+      {options.map((option, optIndex) => (
+        <div
+          class:list={["option-font-group", { "is-visible": optIndex === 0 }]}
+          data-font-group={option.id}
+          role="radiogroup"
+          aria-label={`Tipografía para ${option.label}`}
+        >
+          {fonts.map((font, fontIndex) => (
+            <button
+              type="button"
+              class:list={["option-font-btn", `font-sample-${font.id}`, { "is-active": fontIndex === 0 }]}
+              data-font-btn={font.id}
+              data-font-for={option.id}
+              aria-pressed={fontIndex === 0 ? "true" : "false"}
+              title={font.label}
+            >
+              <span class="font-sample" aria-hidden="true">Ag</span>
+              <span class="font-label">{font.label}</span>
+            </button>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <button type="button" class="option-bar-hide" data-option-hide aria-label="Ocultar selector de vistas">
+      Ocultar
+    </button>
+  </div>
+</div>
+
+<button
+  type="button"
+  class="option-bar-reopen"
+  id="option-bar-reopen"
+  data-option-reopen
+  aria-label="Mostrar selector de vistas"
+>
+  Vistas
+</button>
+
+<script>
+  const STORAGE_KEY = "inmobiliaria-option-view";
+  const HIDDEN_KEY = "inmobiliaria-option-bar-hidden";
+  const THEME_KEY_PREFIX = "inmobiliaria-theme-";
+  const FONT_KEY_PREFIX = "inmobiliaria-font-";
+  const DEFAULT_OPTION = "op1";
+  const DEFAULT_THEME = "luxury";
+  const DEFAULT_FONT = "editorial";
+
+  const bar = document.querySelector<HTMLElement>("[data-option-bar]");
+  const reopen = document.querySelector<HTMLElement>("[data-option-reopen]");
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-option-btn]"));
+  const hideBtn = document.querySelector<HTMLButtonElement>("[data-option-hide]");
+  const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-option-panel]"));
+  const themeGroups = Array.from(document.querySelectorAll<HTMLElement>("[data-theme-group]"));
+  const themeBtns = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-theme-btn]"));
+  const fontGroups = Array.from(document.querySelectorAll<HTMLElement>("[data-font-group]"));
+  const fontBtns = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-font-btn]"));
+
+  const validOption = (value: string | null): value is "op1" | "op2" | "op3" =>
+    value === "op1" || value === "op2" || value === "op3";
+  const validTheme = (value: string | null): value is "luxury" | "terra" | "forest" =>
+    value === "luxury" || value === "terra" || value === "forest";
+  const validFont = (value: string | null): value is "editorial" | "modern" | "warm" =>
+    value === "editorial" || value === "modern" || value === "warm";
+
+  const getStoredTheme = (option: "op1" | "op2" | "op3"): "luxury" | "terra" | "forest" => {
+    try {
+      const stored = localStorage.getItem(THEME_KEY_PREFIX + option);
+      return validTheme(stored) ? stored : DEFAULT_THEME;
+    } catch {
+      return DEFAULT_THEME;
+    }
+  };
+
+  const getStoredFont = (option: "op1" | "op2" | "op3"): "editorial" | "modern" | "warm" => {
+    try {
+      const stored = localStorage.getItem(FONT_KEY_PREFIX + option);
+      return validFont(stored) ? stored : DEFAULT_FONT;
+    } catch {
+      return DEFAULT_FONT;
+    }
+  };
+
+  const applyTheme = (option: "op1" | "op2" | "op3", theme: "luxury" | "terra" | "forest") => {
+    const panel = document.querySelector<HTMLElement>(`[data-option-panel="${option}"]`);
+    if (panel) panel.dataset.theme = theme;
+
+    themeBtns.forEach((btn) => {
+      if (btn.dataset.themeFor !== option) return;
+      const active = btn.dataset.themeBtn === theme;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    try {
+      localStorage.setItem(THEME_KEY_PREFIX + option, theme);
+    } catch {
+      /* ignore storage errors */
+    }
+  };
+
+  const applyFont = (option: "op1" | "op2" | "op3", font: "editorial" | "modern" | "warm") => {
+    const panel = document.querySelector<HTMLElement>(`[data-option-panel="${option}"]`);
+    if (panel) panel.dataset.font = font;
+
+    fontBtns.forEach((btn) => {
+      if (btn.dataset.fontFor !== option) return;
+      const active = btn.dataset.fontBtn === font;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    if (document.body.dataset.activeOption === option) {
+      document.body.dataset.font = font;
+    }
+
+    try {
+      localStorage.setItem(FONT_KEY_PREFIX + option, font);
+    } catch {
+      /* ignore storage errors */
+    }
+  };
+
+  const syncThemeGroups = (option: "op1" | "op2" | "op3") => {
+    themeGroups.forEach((group) => {
+      const visible = group.dataset.themeGroup === option;
+      group.classList.toggle("is-visible", visible);
+      group.hidden = !visible;
+    });
+  };
+
+  const syncFontGroups = (option: "op1" | "op2" | "op3") => {
+    fontGroups.forEach((group) => {
+      const visible = group.dataset.fontGroup === option;
+      group.classList.toggle("is-visible", visible);
+      group.hidden = !visible;
+    });
+  };
+
+  const applyOption = (option: "op1" | "op2" | "op3", scrollTarget?: string) => {
+    buttons.forEach((btn) => {
+      const active = btn.dataset.optionBtn === option;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    panels.forEach((panel) => {
+      const active = panel.dataset.optionPanel === option;
+      panel.hidden = !active;
+      panel.setAttribute("aria-hidden", active ? "false" : "true");
+    });
+
+    syncThemeGroups(option);
+    syncFontGroups(option);
+    document.body.dataset.activeOption = option;
+    document.body.dataset.font = getStoredFont(option);
+    try {
+      localStorage.setItem(STORAGE_KEY, option);
+    } catch {
+      /* ignore storage errors */
+    }
+
+    if (scrollTarget) {
+      requestAnimationFrame(() => {
+        const target = document.querySelector<HTMLElement>(scrollTarget);
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  };
+
+  const setBarHidden = (hidden: boolean) => {
+    document.body.classList.toggle("option-bar-hidden", hidden);
+    if (bar) bar.hidden = hidden;
+    if (reopen) reopen.hidden = !hidden;
+    try {
+      localStorage.setItem(HIDDEN_KEY, hidden ? "1" : "0");
+    } catch {
+      /* ignore storage errors */
+    }
+  };
+
+  (["op1", "op2", "op3"] as const).forEach((option) => {
+    applyTheme(option, getStoredTheme(option));
+    applyFont(option, getStoredFont(option));
+  });
+
+  const storedOption = (() => {
+    try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
+  })();
+  const storedHidden = (() => {
+    try { return localStorage.getItem(HIDDEN_KEY); } catch { return null; }
+  })();
+
+  applyOption(validOption(storedOption) ? storedOption : DEFAULT_OPTION);
+  setBarHidden(storedHidden === "1");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const option = btn.dataset.optionBtn;
+      if (validOption(option)) applyOption(option);
+    });
+  });
+
+  themeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const option = btn.dataset.themeFor;
+      const theme = btn.dataset.themeBtn;
+      if (validOption(option) && validTheme(theme)) applyTheme(option, theme);
+    });
+  });
+
+  fontBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const option = btn.dataset.fontFor;
+      const font = btn.dataset.fontBtn;
+      if (validOption(option) && validFont(font)) applyFont(option, font);
+    });
+  });
+
+  hideBtn?.addEventListener("click", () => setBarHidden(true));
+  reopen?.addEventListener("click", () => {
+    setBarHidden(false);
+    bar?.querySelector<HTMLButtonElement>("[data-option-btn]")?.focus();
+  });
+
+  const optionFromPanel = (panel: HTMLElement | null): "op1" | "op2" | "op3" | null => {
+    const value = panel?.dataset.optionPanel;
+    return validOption(value) ? value : null;
+  };
+
+  const activeOption = (): "op1" | "op2" | "op3" => {
+    const current = document.body.dataset.activeOption;
+    return validOption(current) ? current : DEFAULT_OPTION;
+  };
+
+  const SHARED_NAV_HASHES = new Set(["#inicio", "#perfil", "#servicios", "#contacto"]);
+
+  const remapHashForOption = (hash: string, option: "op1" | "op2" | "op3"): string => {
+    const base = hash.replace(/^#/, "");
+    if (option === "op1") {
+      const op1Map: Record<string, string> = {
+        "inicio-op2": "inicio", "perfil-op2": "perfil", "servicios-op2": "servicios", "contacto-op2": "contacto",
+        "inicio-op3": "inicio", "servicios-op3": "servicios", "contacto-op3": "contacto", "propiedades-op3": "servicios",
+      };
+      return `#${op1Map[base] ?? base}`;
+    }
+    const suffix = option;
+    const sharedMap: Record<string, string> = {
+      inicio: `#inicio-${suffix}`,
+      perfil: `#perfil-${suffix}`,
+      servicios: `#servicios-${suffix}`,
+      contacto: `#contacto-${suffix}`,
+      "inicio-op1": `#inicio-${suffix}`, "perfil-op1": `#perfil-${suffix}`,
+      "servicios-op1": `#servicios-${suffix}`, "contacto-op1": `#contacto-${suffix}`,
+      "inicio-op2": `#inicio-${suffix}`, "perfil-op2": option === "op3" ? "#inicio-op3" : `#perfil-${suffix}`,
+      "servicios-op2": `#servicios-${suffix}`, "contacto-op2": `#contacto-${suffix}`,
+      "inicio-op3": `#inicio-${suffix}`, "servicios-op3": `#servicios-${suffix}`,
+      "contacto-op3": `#contacto-${suffix}`, "propiedades-op3": option === "op3" ? "#propiedades-op3" : "#servicios-op2",
+    };
+    return sharedMap[base] ?? hash;
+  };
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const link = target.closest<HTMLAnchorElement>('a[href^="#"]');
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    if (!href || href === "#") return;
+
+    const current = activeOption();
+
+    // Keep shared main-nav anchors within the active option when possible.
+    if (SHARED_NAV_HASHES.has(href) && current !== "op1") {
+      const mapped = remapHashForOption(href, current);
+      const mappedTarget = document.querySelector<HTMLElement>(mapped);
+      event.preventDefault();
+      if (mappedTarget) {
+        applyOption(current, mapped);
+        history.pushState(null, "", mapped);
+      } else {
+        applyOption(current);
+        document.querySelector<HTMLElement>(`[data-option-panel="${current}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      return;
+    }
+
+    const destination = document.querySelector<HTMLElement>(href);
+    const panel = destination?.closest<HTMLElement>("[data-option-panel]") ?? null;
+    const panelOption = optionFromPanel(panel);
+
+    if (panelOption) {
+      event.preventDefault();
+      // If user is on a non-op1 view and clicks a shared op1 anchor, keep them in current view.
+      if (current !== "op1" && SHARED_NAV_HASHES.has(href)) {
+        const mapped = remapHashForOption(href, current);
+        const mappedTarget = document.querySelector<HTMLElement>(mapped);
+        if (mappedTarget) {
+          applyOption(current, mapped);
+          history.pushState(null, "", mapped);
+          return;
+        }
+      }
+      applyOption(panelOption, href);
+      history.pushState(null, "", href);
+    }
+  });
+</script>
