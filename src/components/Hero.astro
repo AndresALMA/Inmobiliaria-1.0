@@ -1,23 +1,24 @@
 ---
 import { site } from "../data/site";
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const heroVideoPrimary = `${base}/videospublic/Casa_en_campo_en_otoño_053568e1.mp4`;
-const heroVideoFallback = `${base}/videospublic/Modern_minimalist_house_panning_._65de1142.mp4`;
+const heroVideos = [
+  `${base}/videospublic/Casa_en_campo_en_otoño_053568e1.mp4`,
+  `${base}/videospublic/Modern_minimalist_house_panning_…_65de1142.mp4`,
+];
 ---
 
 <section class="hero" id="inicio">
   <video
     class="hero-bg-video"
+    data-hero-videos={JSON.stringify(heroVideos)}
     autoplay
     muted
-    loop
     playsinline
     preload="auto"
     poster={`${base}/images/hero-property.jpg`}
     aria-hidden="true"
   >
-    <source src={heroVideoPrimary} type="video/mp4" />
-    <source src={heroVideoFallback} type="video/mp4" />
+    <source src={heroVideos[0]} type="video/mp4" />
   </video>
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="wrap hero-grid">
@@ -78,3 +79,17 @@ const heroVideoFallback = `${base}/videospublic/Modern_minimalist_house_panning_
     </div>
   </div>
 </section>
+
+<script>
+  const heroVideo = document.querySelector<HTMLVideoElement>(".hero-bg-video[data-hero-videos]");
+  if (heroVideo) {
+    const videos = JSON.parse(heroVideo.dataset.heroVideos ?? "[]") as string[];
+    let index = 0;
+    heroVideo.addEventListener("ended", () => {
+      if (videos.length < 2) return;
+      index = (index + 1) % videos.length;
+      heroVideo.src = videos[index];
+      heroVideo.play().catch(() => {});
+    });
+  }
+</script>
