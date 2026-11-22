@@ -8,18 +8,10 @@ const heroVideos = [
 ---
 
 <section class="hero" id="inicio">
-  <video
-    class="hero-bg-video"
-    data-hero-videos={JSON.stringify(heroVideos)}
-    autoplay
-    muted
-    playsinline
-    preload="auto"
-    poster={`${base}/images/hero-property.jpg`}
-    aria-hidden="true"
-  >
-    <source src={heroVideos[0]} type="video/mp4" />
-  </video>
+  <div class="hero-bg-videos" data-hero-videos={JSON.stringify(heroVideos)} aria-hidden="true">
+    <video class="hero-bg-video is-active" muted playsinline preload="auto" src={heroVideos[0]}></video>
+    <video class="hero-bg-video" muted playsinline preload="auto" src={heroVideos[1]}></video>
+  </div>
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
@@ -81,15 +73,48 @@ const heroVideos = [
 </section>
 
 <script>
-  const heroVideo = document.querySelector<HTMLVideoElement>(".hero-bg-video[data-hero-videos]");
-  if (heroVideo) {
-    const videos = JSON.parse(heroVideo.dataset.heroVideos ?? "[]") as string[];
-    let index = 0;
-    heroVideo.addEventListener("ended", () => {
-      if (videos.length < 2) return;
-      index = (index + 1) % videos.length;
-      heroVideo.src = videos[index];
-      heroVideo.play().catch(() => {});
-    });
+  const container = document.querySelector<HTMLElement>(".hero-bg-videos[data-hero-videos]");
+  if (container) {
+    const videos = JSON.parse(container.dataset.heroVideos ?? "[]") as string[];
+    const els = Array.from(container.querySelectorAll<HTMLVideoElement>(".hero-bg-video"));
+    const [a, b] = els;
+    if (a && b && videos.length >= 2) {
+      let active = a;
+      let idle = b;
+      let index = 0;
+      let switching = false;
+      const overlap = 1.5;
+
+      const playActive = () => active.play().catch(() => {});
+      playActive();
+
+      const swap = (from: HTMLVideoElement) => {
+        if (switching || from !== active) return;
+        switching = true;
+        index = (index + 1) % videos.length;
+        idle.src = videos[index];
+        idle.load();
+        idle.currentTime = 0;
+        idle.classList.add("is-active");
+        active.classList.remove("is-active");
+        idle.play().catch(() => {});
+
+        const old = active;
+        active = idle;
+        idle = old;
+        setTimeout(() => {
+          old.pause();
+          switching = false;
+        }, 1700);
+      };
+
+      els.forEach((el) => {
+        el.addEventListener("timeupdate", () => {
+          if (el !== active || !el.duration) return;
+          if (el.duration - el.currentTime <= overlap) swap(el);
+        });
+        el.addEventListener("ended", () => swap(el));
+      });
+    }
   }
 </script>
