@@ -1358,15 +1358,44 @@ a.contact-value:hover {
 .bf-panel :focus-visible { outline: 2px solid var(--bf-secondary); outline-offset: 3px; }
 
 /* Option 3 — premium / dark */
+.op3-scroll-video-wrap {
+  position: relative;
+  isolation: isolate;
+}
+.op3-scroll-video-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: clip;
+}
+.op3-scroll-video {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.28;
+  display: block;
+}
+.op3-scroll-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,28,46,0.35) 0%, rgba(247,244,239,0.18) 45%, rgba(247,244,239,0.3) 100%);
+}
+.op3-scroll-video-wrap > section {
+  position: relative;
+  z-index: 1;
+}
+
 .op3-hero {
   position: relative; padding: 5.5rem 0; color: var(--text-inverse);
-  background: #0f1c2e; overflow: clip;
+  background: transparent; overflow: clip;
 }
 .op3-hero-bg {
   position: absolute; inset: 0;
   background:
-    linear-gradient(115deg, rgba(12, 21, 34, 0.72) 0%, rgba(18, 31, 48, 0.58) 50%, rgba(12, 21, 34, 0.78) 100%),
-    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    linear-gradient(115deg, rgba(12, 21, 34, 0.72) 0%, rgba(18, 31, 48, 0.52) 50%, rgba(12, 21, 34, 0.68) 100%);
 }
 .op3-hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
 .op3-eyebrow { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
@@ -1413,7 +1442,7 @@ a.contact-value:hover {
 .op3-floating-stat strong { display: block; font-family: var(--serif); font-size: 2.2rem; line-height: 1; }
 .op3-floating-stat span { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 
-.op3-properties { background: #f7f4ef; }
+.op3-properties { background: rgba(247,244,239,0.72); backdrop-filter: blur(2px); }
 .op3-section-head { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 2.5rem; }
 .op3-section-head-center { flex-direction: column; align-items: center; text-align: center; }
 .op3-section-head-center .op3-section-note { text-align: center; max-width: 36rem; }
@@ -1651,10 +1680,11 @@ body[data-font="warm"],
 
 /* OP3 theme overrides */
 .option-panel[data-theme="terra"] .op3-hero, .option-panel[data-theme="terra"] .op3-contact { background: #4b2e2a; }
-.option-panel[data-theme="terra"] .op3-hero-bg { background: linear-gradient(115deg, rgba(75,46,42,0.72) 0%, rgba(92,61,46,0.58) 50%, rgba(75,46,42,0.78) 100%), url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat; }
+.option-panel[data-theme="terra"] .op3-hero-bg { background: linear-gradient(115deg, rgba(75,46,42,0.68) 0%, rgba(92,61,46,0.5) 50%, rgba(75,46,42,0.68) 100%); }
+.option-panel[data-theme="terra"] .op3-scroll-video-overlay { background: linear-gradient(180deg, rgba(75,46,42,0.35) 0%, rgba(245,241,235,0.18) 45%, rgba(245,241,235,0.3) 100%); }
 .option-panel[data-theme="terra"] .op3-services-panel { background: #3d251f; }
 .option-panel[data-theme="terra"] .op3-floating-stat { background: #c8814f; box-shadow: 0 12px 30px rgba(200,129,79,0.35); }
-.option-panel[data-theme="terra"] .op3-properties { background: #f5f1eb; }
+.option-panel[data-theme="terra"] .op3-properties { background: rgba(245,241,235,0.72); }
 .option-panel[data-theme="terra"] .op3-local { background: #ebe3d8; }
 .option-panel[data-theme="terra"] .op3-about { background: #fffaf4; }
 .option-panel[data-theme="terra"] .op3-property-price, .option-panel[data-theme="terra"] .op3-eyebrow-dark, .option-panel[data-theme="terra"] .op3-cred-label, .option-panel[data-theme="terra"] .op3-service-idx, .option-panel[data-theme="terra"] .op3-contact-row span:first-child, .option-panel[data-theme="terra"] .op3-map-head a,
@@ -1663,10 +1693,11 @@ body[data-font="warm"],
 .option-panel[data-theme="terra"] .op3-property-link { border-bottom-color: #c8814f; }
 
 .option-panel[data-theme="forest"] .op3-hero, .option-panel[data-theme="forest"] .op3-contact { background: #2f5d50; }
-.option-panel[data-theme="forest"] .op3-hero-bg { background: linear-gradient(115deg, rgba(47,93,80,0.72) 0%, rgba(58,99,89,0.58) 50%, rgba(36,73,63,0.78) 100%), url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat; }
+.option-panel[data-theme="forest"] .op3-hero-bg { background: linear-gradient(115deg, rgba(47,93,80,0.68) 0%, rgba(58,99,89,0.5) 50%, rgba(36,73,63,0.68) 100%); }
+.option-panel[data-theme="forest"] .op3-scroll-video-overlay { background: linear-gradient(180deg, rgba(47,93,80,0.35) 0%, rgba(244,245,240,0.18) 45%, rgba(244,245,240,0.3) 100%); }
 .option-panel[data-theme="forest"] .op3-services-panel { background: #24493f; }
 .option-panel[data-theme="forest"] .op3-floating-stat { background: #c8956c; box-shadow: 0 12px 30px rgba(200,149,108,0.35); }
-.option-panel[data-theme="forest"] .op3-properties { background: #f4f5f0; }
+.option-panel[data-theme="forest"] .op3-properties { background: rgba(244,245,240,0.72); }
 .option-panel[data-theme="forest"] .op3-local { background: #e7ebe0; }
 .option-panel[data-theme="forest"] .op3-about { background: #fbfcf9; }
 .option-panel[data-theme="forest"] .op3-property-price, .option-panel[data-theme="forest"] .op3-eyebrow-dark, .option-panel[data-theme="forest"] .op3-cred-label, .option-panel[data-theme="forest"] .op3-service-idx, .option-panel[data-theme="forest"] .op3-contact-row span:first-child, .option-panel[data-theme="forest"] .op3-map-head a,
