@@ -49,7 +49,10 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
       data-op3-scroll-video
       muted
       playsinline
-      preload="auto"
+      webkit-playsinline
+      autoplay
+      loop
+      preload="metadata"
       src={op3BgVideo}
     ></video>
     <div class="op3-scroll-video-overlay"></div>
@@ -372,7 +375,8 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
     if (op3Panel && scrollVideo) {
       const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const isMobileVideo = () => window.matchMedia("(max-width: 760px), (pointer: coarse)").matches;
+      const isMobileLike = () => window.matchMedia("(max-width: 1024px), (pointer: coarse)").matches;
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
       scrollVideo.pause();
 
       let ticking = false;
@@ -396,9 +400,10 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
           scrollVideo.currentTime = 0;
           return;
         }
-        if (isMobileVideo()) {
+        if (isMobileLike() || isIOS) {
           scrollVideo.loop = true;
           scrollVideo.muted = true;
+          scrollVideo.defaultMuted = true;
           const playPromise = scrollVideo.play();
           if (playPromise && typeof playPromise.catch === "function") {
             playPromise.catch(() => {
@@ -406,9 +411,11 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
                 scrollVideo.play().catch(() => {});
                 window.removeEventListener("touchstart", resume);
                 window.removeEventListener("click", resume);
+                window.removeEventListener("scroll", resume);
               };
-              window.addEventListener("touchstart", resume, { passive: true, once: true });
-              window.addEventListener("click", resume, { once: true });
+              window.addEventListener("touchstart", resume, { passive: true });
+              window.addEventListener("click", resume);
+              window.addEventListener("scroll", resume, { passive: true });
             });
           }
           return;

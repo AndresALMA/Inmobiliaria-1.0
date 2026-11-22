@@ -9,8 +9,8 @@ const heroVideos = [
 
 <section class="hero" id="inicio">
   <div class="hero-bg-videos" data-hero-videos={JSON.stringify(heroVideos)} aria-hidden="true">
-    <video class="hero-bg-video is-active" muted playsinline preload="auto" src={heroVideos[0]}></video>
-    <video class="hero-bg-video" muted playsinline preload="auto" src={heroVideos[1]}></video>
+    <video class="hero-bg-video is-active" muted playsinline webkit-playsinline autoplay preload="auto" src={heroVideos[0]}></video>
+    <video class="hero-bg-video" muted playsinline webkit-playsinline preload="auto" src={heroVideos[1]}></video>
   </div>
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="wrap hero-grid">
@@ -85,8 +85,27 @@ const heroVideos = [
       let switching = false;
       const overlap = 1.5;
 
-      const playActive = () => active.play().catch(() => {});
-      playActive();
+      const tryPlay = (el: HTMLVideoElement) => {
+        el.muted = true;
+        const p = el.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      };
+
+      const ensurePlaying = () => tryPlay(active);
+      ensurePlaying();
+
+      const resumeOnGesture = () => {
+        ensurePlaying();
+        window.removeEventListener("touchstart", resumeOnGesture);
+        window.removeEventListener("click", resumeOnGesture);
+        window.removeEventListener("scroll", resumeOnGesture);
+      };
+      window.addEventListener("touchstart", resumeOnGesture, { passive: true });
+      window.addEventListener("click", resumeOnGesture);
+      window.addEventListener("scroll", resumeOnGesture, { passive: true });
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") ensurePlaying();
+      });
 
       const swap = (from: HTMLVideoElement) => {
         if (switching || from !== active) return;
@@ -97,7 +116,7 @@ const heroVideos = [
         idle.currentTime = 0;
         idle.classList.add("is-active");
         active.classList.remove("is-active");
-        idle.play().catch(() => {});
+        tryPlay(idle);
 
         const old = active;
         active = idle;
