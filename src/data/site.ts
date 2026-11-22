@@ -28,6 +28,11 @@ export const site = {
     src: publicAsset("/images/logo-cpcpi.svg"),
     alt: "Logo del Colegio Profesional de Martilleros y Corredores Públicos de la Provincia de Córdoba",
   },
+  colegio: {
+    label: "Respaldo institucional",
+    description:
+      "Miembro activa del Colegio Profesional de Martilleros y Corredores Públicos de la Provincia de Córdoba (CPCPI), con estricto cumplimiento de la Ley Provincial N° 9445.",
+  },
   whatsappLink: (message: string) =>
     `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
   nav: [
