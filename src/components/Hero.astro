@@ -1,8 +1,24 @@
 ---
 import { site } from "../data/site";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const heroVideoPrimary = `${base}/videospublic/Casa_en_campo_en_otoño_053568e1.mp4`;
+const heroVideoFallback = `${base}/videospublic/Modern_minimalist_house_panning_._65de1142.mp4`;
 ---
 
 <section class="hero" id="inicio">
+  <video
+    class="hero-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster={`${base}/images/hero-property.jpg`}
+    aria-hidden="true"
+  >
+    <source src={heroVideoPrimary} type="video/mp4" />
+    <source src={heroVideoFallback} type="video/mp4" />
+  </video>
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
@@ -12,6 +28,7 @@ import { site } from "../data/site";
       <p class="hero-lead">{site.tagline}</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.02 0C5.4 0 .02 5.38.02 12c0 2.12.55 4.19 1.6 6.02L0 24l6.14-1.6A11.95 11.95 0 0 0 12.02 24C18.64 24 24 18.62 24 12c0-3.2-1.24-6.21-3.48-8.52ZM12.02 21.8c-1.83 0-3.62-.49-5.18-1.42l-.37-.22-3.64.95.97-3.55-.24-.37A9.77 9.77 0 0 1 2.22 12c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.08 1.02 6.93 2.88A9.73 9.73 0 0 1 21.82 12c0 5.4-4.4 9.8-9.8 9.8Zm5.37-7.34c-.29-.15-1.74-.86-2.01-.96-.27-.1-.47-.15-.66.15-.2.29-.76.96-.93 1.16-.17.2-.34.22-.63.07-.29-.15-1.24-.46-2.36-1.46-.87-.77-1.46-1.73-1.63-2.02-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.66-1.59-.91-2.18-.24-.58-.49-.5-.66-.5h-.57c-.2 0-.52.07-.79.37-.27.29-1.04 1.01-1.04 2.46 0 1.45 1.06 2.85 1.21 3.05.15.2 2.09 3.19 5.06 4.48.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.08 1.74-.71 1.99-1.4.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.56-.34Z"/></svg>
           Consultar por WhatsApp
         </a>
         <a class="btn btn-secondary" href="#servicios">Ver servicios</a>

@@ -300,13 +300,21 @@ const fonts = [
     return validOption(current) ? current : DEFAULT_OPTION;
   };
 
-  const SHARED_NAV_HASHES = new Set(["#inicio", "#perfil", "#servicios", "#contacto"]);
+  const SHARED_NAV_HASHES = new Set([
+    "#inicio",
+    "#perfil",
+    "#servicios",
+    "#propiedades",
+    "#cobertura",
+    "#contacto",
+  ]);
 
   const remapHashForOption = (hash: string, option: "op1" | "op2" | "op3"): string => {
     const base = hash.replace(/^#/, "");
     if (option === "op1") {
       const op1Map: Record<string, string> = {
-        "inicio-op2": "inicio", "perfil-op2": "perfil", "servicios-op2": "servicios", "contacto-op2": "contacto",
+        "inicio-op2": "inicio", "perfil-op2": "perfil", "servicios-op2": "servicios",
+        "propiedades-op2": "servicios", "cobertura-op2": "servicios", "contacto-op2": "contacto",
         "inicio-op3": "inicio", "servicios-op3": "servicios", "contacto-op3": "contacto", "propiedades-op3": "servicios",
       };
       return `#${op1Map[base] ?? base}`;
@@ -316,11 +324,15 @@ const fonts = [
       inicio: `#inicio-${suffix}`,
       perfil: `#perfil-${suffix}`,
       servicios: `#servicios-${suffix}`,
+      propiedades: option === "op2" ? "#propiedades-op2" : option === "op3" ? "#propiedades-op3" : "#servicios",
+      cobertura: option === "op2" ? "#cobertura-op2" : "#servicios-" + suffix,
       contacto: `#contacto-${suffix}`,
       "inicio-op1": `#inicio-${suffix}`, "perfil-op1": `#perfil-${suffix}`,
       "servicios-op1": `#servicios-${suffix}`, "contacto-op1": `#contacto-${suffix}`,
       "inicio-op2": `#inicio-${suffix}`, "perfil-op2": option === "op3" ? "#inicio-op3" : `#perfil-${suffix}`,
       "servicios-op2": `#servicios-${suffix}`, "contacto-op2": `#contacto-${suffix}`,
+      "propiedades-op2": option === "op3" ? "#propiedades-op3" : "#servicios-op2",
+      "cobertura-op2": option === "op3" ? "#servicios-op3" : "#cobertura-op2",
       "inicio-op3": `#inicio-${suffix}`, "servicios-op3": `#servicios-${suffix}`,
       "contacto-op3": `#contacto-${suffix}`, "propiedades-op3": option === "op3" ? "#propiedades-op3" : "#servicios-op2",
     };

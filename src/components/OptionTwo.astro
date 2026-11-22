@@ -1,152 +1,410 @@
 ---
 import { site } from "../data/site";
+
+const mapSrc =
+  "https://www.openstreetmap.org/export/embed.html?bbox=-64.24%2C-31.48%2C-64.10%2C-31.36&layer=mapnik&marker=-31.42%2C-64.19";
 ---
 
-<div class="option-panel" data-option-panel="op2" data-theme="luxury" data-font="editorial" hidden aria-hidden="true">
-  <section class="op2-hero" id="inicio-op2">
-    <div class="op2-hero-bg" aria-hidden="true"></div>
-    <div class="wrap op2-hero-grid">
-      <div class="op2-photo-col">
-        <div class="op2-portrait-card">
-          <img
-            class="op2-portrait"
-            src={site.photo.src}
-            alt={site.photo.alt}
-            width="840"
-            height="1050"
-            loading="eager"
-          />
-          <div class="op2-portrait-badge">
-            <img src={site.colegioLogo.src} alt={site.colegioLogo.alt} width="56" height="56" />
-            <div>
-              <strong>{site.license}</strong>
-              <span>Córdoba Capital</span>
-            </div>
-          </div>
+<div class="option-panel bf-panel" data-option-panel="op2" data-theme="luxury" data-font="editorial" hidden aria-hidden="true">
+  <section class="bf-hero" id="inicio-op2">
+    <div class="bf-hero-glow" aria-hidden="true"></div>
+    <div class="wrap bf-hero-grid">
+      <div class="bf-hero-copy">
+        <p class="bf-credential">
+          <span class="material-symbols-outlined" aria-hidden="true">verified_user</span>
+          Martillera &amp; Corredora Pública · {site.license} (CPCPI Córdoba)
+        </p>
+        <h1>Gestión Inmobiliaria &amp; Tasaciones de Excelencia en Córdoba</h1>
+        <p class="bf-hero-lead">
+          Más de dos décadas de trayectoria respaldando operaciones seguras, tasaciones judiciales y particulares, y administración integral de propiedades con rigor técnico, seguridad jurídica y trato personalizado bajo estricta ética profesional.
+        </p>
+        <div class="bf-hero-actions">
+          <a class="bf-btn bf-btn-gold" href={site.whatsappLink("Hola Susana, solicito asesoramiento profesional")} target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+            WhatsApp Directo (+54 9 351 6816010)
+          </a>
+          <a class="bf-btn bf-btn-ghost" href="#propiedades-op2">
+            <span class="material-symbols-outlined" aria-hidden="true">real_estate_agent</span>
+            Explorar Propiedades
+          </a>
+        </div>
+        <div class="bf-stats">
+          <div><strong>+20</strong><span>Años de Trayectoria</span></div>
+          <div><strong>Oficial</strong><span>Perito Judicial Certificada</span></div>
+          <div><strong>1 a 1</strong><span>Atención Personalizada</span></div>
         </div>
       </div>
-
-      <div class="op2-copy-col">
-        <p class="op2-kicker">Estudio Inmobiliario</p>
-        <h1 class="op2-title">{site.professionalName}</h1>
-        <p class="op2-subtitle">{site.title}</p>
-        <p class="op2-lead">
-          {site.tagline}
-        </p>
-        <div class="op2-actions">
-          <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
-          <a class="btn op2-btn-outline" href="#contacto-op2">Contactar</a>
-        </div>
-        <div class="op2-trust">
-          <div class="op2-trust-item">
-            <span class="op2-trust-label">Enfoque</span>
-            <span class="op2-trust-value">Criterio técnico y humano</span>
-          </div>
-          <div class="op2-trust-item">
-            <span class="op2-trust-label">Atención</span>
-            <span class="op2-trust-value">Personalizada y directa</span>
-          </div>
-          <div class="op2-trust-item">
-            <span class="op2-trust-label">Respaldo</span>
-            <span class="op2-trust-value">Matrícula profesional</span>
+      <div class="bf-hero-visual">
+        <div class="bf-portrait">
+          <img src={site.photo.src} alt={site.photo.alt} width="840" height="1050" loading="eager" />
+          <div class="bf-quote">
+            <span class="bf-quote-tag">Susana Kaloustian</span>
+            <p>"El valor real de una propiedad nace del rigor técnico y la honestidad con cada familia."</p>
+            <span class="bf-quote-meta">Susana Kaloustian, Martillera y Corredora Pública · M.P. 04-2435 · Colegio Profesional CPCPI</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section op2-services" id="servicios-op2">
-    <div class="wrap">
-      <div class="op2-section-head op2-section-head-center">
-        <p class="op2-kicker">Servicios</p>
-        <h2>Soluciones inmobiliarias con respaldo profesional</h2>
-        <p class="op2-section-lead">Cada servicio está pensado para brindarte claridad, seguridad y acompañamiento en decisiones importantes.</p>
-      </div>
-      <div class="op2-service-grid">
-        {site.services.map((service, index) => (
-          <article class="op2-service-card">
-            <div class="op2-service-media">
-              <img src={service.image} alt={service.alt} loading="lazy" width="1200" height="800" />
-              <span class="op2-service-num">0{index + 1}</span>
+  <section class="bf-section bf-profile" id="perfil-op2">
+    <div class="wrap bf-profile-grid">
+      <div class="bf-profile-visual">
+        <div class="bf-cert-card">
+          <img src={site.op2.certificateImage} alt={site.op2.certificateAlt} width="900" height="560" loading="lazy" />
+          <div class="bf-cert-footer">
+            <div>
+              <span class="bf-mini-label">Matrícula Provincial Oficial</span>
+              <strong>{site.license}</strong>
+              <span class="bf-cert-note">Perito Auxiliar de la Justicia de Córdoba</span>
             </div>
-            <div class="op2-service-body">
-              <p class="op2-service-tag">{service.detail}</p>
-              <h3>{service.name}</h3>
-              <p>{service.summary}</p>
+            <span class="bf-icon-circle" aria-hidden="true"><span class="material-symbols-outlined">gavel</span></span>
+          </div>
+        </div>
+        <div class="bf-endorsement">
+          <span class="bf-icon-circle bf-icon-circle--teal" aria-hidden="true"><span class="material-symbols-outlined">account_balance</span></span>
+          <p>Miembro activa del <strong>Colegio Profesional de Martilleros y Corredores Públicos de la Provincia de Córdoba</strong> con estricto cumplimiento de la Ley Provincial N° 9445.</p>
+        </div>
+      </div>
+      <div class="bf-profile-copy">
+        <p class="bf-eyebrow">Seguridad Jurídica &amp; Notarial</p>
+        <h2>Confianza respaldada en dictámenes certificados y peritajes exactos</h2>
+        <p>En un mercado inmobiliario dinámico y a menudo complejo como el de Córdoba Capital y Sierras, contar con un peritaje legal y una tasación fidedigna marca la diferencia entre una operación exitosa y un conflicto patrimonial prolongado.</p>
+        <p>Desde el <strong>Estudio Inmobiliario Kaloustian</strong>, conducido por Susana Kaloustian, brindamos asistencia integral a magistrados, estudios jurídicos, escribanías y particulares que buscan tasar, comercializar o proteger su legado con total tranquilidad, confidencialidad y validez procesal.</p>
+        <div class="bf-highlights">
+          {site.op2.highlights.map((item) => (
+            <article class="bf-highlight">
+              <span class="material-symbols-outlined" aria-hidden="true">{item.icon}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf-section bf-services" id="servicios-op2">
+    <div class="wrap">
+      <div class="bf-section-head bf-center">
+        <p class="bf-eyebrow">Pilares Profesionales</p>
+        <h2>Soluciones Inmobiliarias de Precisión</h2>
+        <p>Tres áreas de servicio técnico-jurídico articuladas para garantizar la seguridad del patrimonio, la valoración certera y el rendimiento sustentable.</p>
+      </div>
+      <div class="bf-pillars">
+        {site.op2.pillars.map((pillar) => (
+          <article class="bf-pillar">
+            <div class="bf-pillar-top">
+              <span class="bf-pillar-num">{pillar.num}</span>
+              <span class="bf-icon-square" aria-hidden="true"><span class="material-symbols-outlined">{pillar.icon}</span></span>
+            </div>
+            <h3>{pillar.title}</h3>
+            <p class="bf-pillar-text">{pillar.text}</p>
+            <ul class="bf-check-list">
+              {pillar.bullets.map((bullet) => (
+                <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>{bullet}</li>
+              ))}
+            </ul>
+            <a class="bf-pillar-link" href="#contacto-op2">{pillar.cta}</a>
+          </article>
+        ))}
+      </div>
+      <div class="bf-process">
+        <div class="bf-section-head bf-center bf-process-head">
+          <p class="bf-eyebrow">Metodología Técnica</p>
+          <h3>Proceso de Trabajo en 4 Etapas</h3>
+          <p>Rigor metodológico y transparencia desde el primer contacto hasta el dictamen definitivo.</p>
+        </div>
+        <div class="bf-steps">
+          {site.op2.process.map((step) => (
+            <article class="bf-step">
+              <span class="bf-step-num">Paso {step.num}</span>
+              <h4>{step.title}</h4>
+              <p>{step.text}</p>
+              <span class="bf-step-label"><span class="material-symbols-outlined" aria-hidden="true">{step.icon}</span>{step.label}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf-section bf-properties" id="propiedades-op2">
+    <div class="wrap">
+      <div class="bf-properties-head">
+        <div>
+          <p class="bf-eyebrow">Cartera Seleccionada</p>
+          <h2>Propiedades Destacadas</h2>
+          <p>Oportunidades residenciales e inversiones verificadas con títulos perfectos en Córdoba.</p>
+        </div>
+        <div class="bf-tabs" role="group" aria-label="Filtrar por categoría">
+          {site.op2.filters.tabs.map((tab) => (
+            <button type="button" class="bf-tab" data-filter-tab={tab} aria-pressed={tab === "Todas"}>{tab}</button>
+          ))}
+        </div>
+      </div>
+      <div class="bf-filters" role="group" aria-label="Filtros de propiedades">
+        <div>
+          <label for="op2-filter-type">Tipo de Inmueble</label>
+          <select id="op2-filter-type" data-filter="type">
+            {site.op2.filters.types.map((option) => <option>{option}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="op2-filter-zone">Zona / Barrio</label>
+          <select id="op2-filter-zone" data-filter="zone">
+            {site.op2.filters.zones.map((option) => <option>{option}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="op2-filter-bedrooms">Dormitorios</label>
+          <select id="op2-filter-bedrooms" data-filter="bedrooms">
+            {site.op2.filters.bedrooms.map((option) => <option>{option}</option>)}
+          </select>
+        </div>
+        <button class="bf-btn bf-btn-secondary" type="button" data-filter-apply>
+          <span class="material-symbols-outlined" aria-hidden="true">filter_alt</span>
+          Filtrar Cartera
+        </button>
+      </div>
+      <div class="bf-properties-grid" data-properties-grid>
+        {site.op2.properties.map((property) => (
+          <article
+            class="bf-property"
+            data-category={property.category}
+            data-type={property.type}
+            data-zone={property.zone}
+            data-bedrooms={property.bedrooms}
+          >
+            <div class="bf-property-media">
+              <img src={property.image} alt={property.alt} width="1200" height="750" loading="lazy" />
+              <div class="bf-property-tags">
+                {property.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+              <span class="bf-property-price">{property.price}</span>
+            </div>
+            <div class="bf-property-body">
+              <p class="bf-property-location"><span class="material-symbols-outlined" aria-hidden="true">location_on</span>{property.location}</p>
+              <h3>{property.title}</h3>
+              <p class="bf-property-text">{property.text}</p>
+              <dl class="bf-property-specs">
+                {property.specs.map((spec) => (
+                  <div><dt>{spec[0]}</dt><dd>{spec[1]}</dd></div>
+                ))}
+              </dl>
+              <a class="bf-btn bf-btn-primary bf-property-cta" href={site.whatsappLink(`Hola Susana, me interesa coordinar visita para ${property.title} (${property.price})`)} target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+                Consultar por WhatsApp
+              </a>
             </div>
           </article>
         ))}
       </div>
-    </div>
-  </section>
-
-  <section class="section op2-profile" id="perfil-op2">
-    <div class="wrap op2-profile-grid">
-      <div class="op2-profile-copy">
-        <p class="op2-kicker">Perfil profesional</p>
-        <h2>Confianza, criterio y acompañamiento</h2>
-        <p class="op2-profile-text">{site.description}</p>
-        <div class="op2-values" aria-label="Valores de trabajo">
-          <span class="op2-value">Transparencia</span>
-          <span class="op2-value">Rigor técnico</span>
-          <span class="op2-value">Compromiso</span>
+      <p class="bf-empty" data-properties-empty hidden>No hay propiedades que coincidan con los filtros seleccionados.</p>
+      <div class="bf-offmarket">
+        <div>
+          <span class="bf-icon-circle" aria-hidden="true"><span class="material-symbols-outlined">search_check</span></span>
+          <div>
+            <h3>¿Buscás una tipología o zona específica fuera de mercado?</h3>
+            <p>Gestionamos búsquedas a medida y carteras fuera de mercado para inversores y familias en toda Córdoba.</p>
+          </div>
         </div>
-        <dl class="op2-details">
-          <div><dt>Nombre</dt><dd>{site.professionalName}</dd></div>
-          <div><dt>Título</dt><dd>{site.title}</dd></div>
-          <div><dt>Matrícula</dt><dd>{site.license}</dd></div>
-          <div><dt>Ubicación</dt><dd>{site.location}</dd></div>
-        </dl>
-      </div>
-      <div class="op2-profile-visual">
-        <div class="op2-profile-image-frame">
-          <img
-            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80"
-            alt="Interior de propiedad moderna"
-            loading="lazy"
-            width="900"
-            height="1100"
-          />
-        </div>
-        <div class="op2-profile-note">
-          <p class="op2-profile-note-title">Atención en Córdoba Capital</p>
-          <p>Asesoramiento claro, humano y profesional para operaciones, tasaciones y administración de inmuebles.</p>
-        </div>
+        <a class="bf-btn bf-btn-primary" href={site.whatsappLink("Hola Susana, estoy buscando una propiedad con características específicas")} target="_blank" rel="noopener noreferrer">
+          Encargar Búsqueda Personalizada
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="section op2-contact" id="contacto-op2">
-    <div class="wrap op2-contact-grid">
-      <div>
-        <p class="op2-kicker op2-kicker-light">Contacto</p>
-        <h2>Conversemos sobre tu próxima decisión inmobiliaria</h2>
-        <p class="op2-contact-lead">
-          Estoy disponible para responder consultas, coordinar tasaciones y brindarte asesoramiento profesional.
-        </p>
-        <div class="op2-actions">
-          <a class="btn btn-primary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a class="btn op2-btn-outline-light" href={`mailto:${site.email}`}>Enviar correo</a>
+  <section class="bf-section bf-coverage" id="cobertura-op2">
+    <div class="wrap bf-coverage-grid">
+      <div class="bf-coverage-copy">
+        <p class="bf-eyebrow">Presencia Estratégica</p>
+        <h2>Áreas de Cobertura en Córdoba Capital &amp; Alrededores</h2>
+        <p>Conocimiento minucioso de la plusvalía urbana, dinámicas vecinales y valor del metro cuadrado en las principales jurisdicciones periciales y residenciales.</p>
+        <div class="bf-coverage-list">
+          {site.op2.coverage.map((area) => (
+            <div class="bf-coverage-item">
+              <span class="material-symbols-outlined" aria-hidden="true">{area.icon}</span>
+              <div><strong>{area.title}</strong><span>{area.text}</span></div>
+              <span class="material-symbols-outlined bf-chevron" aria-hidden="true">chevron_right</span>
+            </div>
+          ))}
         </div>
       </div>
-      <div class="op2-contact-card">
-        <div class="op2-contact-row">
-          <span class="op2-contact-label">Teléfono</span>
-          <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+      <div class="bf-map">
+        <iframe title="Mapa de Córdoba Capital y alrededores" src={mapSrc} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="bf-map-badge">
+          <p class="bf-map-badge-title"><span class="bf-pulse" aria-hidden="true"></span>Sede Profesional Central</p>
+          <p>Córdoba Capital, República Argentina. Cobertura en toda la 1ª Circunscripción Judicial de la Provincia.</p>
+          <div><span>Peritajes en Gran Córdoba &amp; Sierras</span><span class="material-symbols-outlined" aria-hidden="true">check</span></div>
         </div>
-        <div class="op2-contact-row">
-          <span class="op2-contact-label">Correo</span>
-          <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="bf-map-link" href="https://maps.google.com/?q=Cordoba+Capital+Argentina" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined" aria-hidden="true">map</span>Ver en Google Maps
+        </a>
+        <span class="bf-map-sla"><span class="material-symbols-outlined" aria-hidden="true">pin_drop</span>Visitas técnicas in situ en 48 hs</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bf-section bf-contact" id="contacto-op2">
+    <div class="wrap">
+      <div class="bf-section-head bf-center">
+        <p class="bf-eyebrow">Comunicación Inmediata</p>
+        <h2>Canales Directos con Susana Kaloustian</h2>
+        <p>Respuesta ágil, sin intermediarios ni derivaciones impersonales. Atención dedicada para expedientes, tasaciones y operaciones de compraventa.</p>
+      </div>
+      <div class="bf-contact-cards">
+        <article class="bf-contact-card">
+          <div>
+            <span class="bf-icon-circle" aria-hidden="true"><span class="material-symbols-outlined">chat</span></span>
+            <p class="bf-mini-label">Canal Prioritario</p>
+            <h3>WhatsApp Profesional</h3>
+            <p>Respuestas inmediatas para coordinar peritajes urgentes, consultas de alquileres o tasaciones particulares.</p>
+          </div>
+          <div>
+            <strong class="bf-contact-value">+54 9 351 6816010</strong>
+            <a class="bf-btn bf-btn-primary" href={site.whatsappLink("Hola Susana, me comunico desde su sitio web")} target="_blank" rel="noopener noreferrer">
+              Iniciar Conversación <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+            </a>
+          </div>
+        </article>
+        <article class="bf-contact-card bf-contact-card--teal">
+          <div>
+            <span class="bf-icon-circle bf-icon-circle--teal" aria-hidden="true"><span class="material-symbols-outlined">mail</span></span>
+            <p class="bf-mini-label">Expedientes &amp; Documentación</p>
+            <h3>Correo Institucional</h3>
+            <p>Recepción formal de cédulas de notificación judicial, títulos de propiedad, escrituras, planos y memorias técnicas.</p>
+          </div>
+          <div>
+            <strong class="bf-contact-value bf-truncate" title={site.email}>{site.email}</strong>
+            <a class="bf-btn bf-btn-outline" href={`mailto:${site.email}`}>
+              Enviar Correo Formal <span class="material-symbols-outlined" aria-hidden="true">send</span>
+            </a>
+          </div>
+        </article>
+        <article class="bf-contact-card">
+          <div>
+            <span class="bf-icon-circle bf-icon-circle--amber" aria-hidden="true"><span class="material-symbols-outlined">calendar_today</span></span>
+            <p class="bf-mini-label">Horario de Atención</p>
+            <h3>Entrevistas &amp; Peritajes</h3>
+            <p>Lunes a Viernes de 09:00 a 18:30 hs.<br />Reuniones presenciales en Córdoba Capital bajo coordinación previa.</p>
+          </div>
+          <div>
+            <strong class="bf-contact-value">Córdoba Capital, Argentina</strong>
+            <a class="bf-btn bf-btn-outline" href={`tel:${site.phoneTel}`}>
+              <span class="material-symbols-outlined" aria-hidden="true">call</span>Llamar Directamente
+            </a>
+          </div>
+        </article>
+      </div>
+      <div class="bf-form-card">
+        <div class="bf-form-head">
+          <p class="bf-form-tag"><span class="material-symbols-outlined" aria-hidden="true">description</span>Atención Especializada</p>
+          <h3>Registrar Consulta o Encargo de Tasación</h3>
+          <p>Complete el formulario para coordinar un diagnóstico técnico previo sin costo sobre su inmueble o expediente judicial en Córdoba.</p>
         </div>
-        <div class="op2-contact-row">
-          <span class="op2-contact-label">Ubicación</span>
-          <span>{site.location}</span>
-        </div>
-        <div class="op2-contact-row">
-          <span class="op2-contact-label">Matrícula</span>
-          <span>{site.license}</span>
-        </div>
+        <form class="bf-form" id="op2-contact-form" novalidate>
+          <div class="bf-form-row">
+            <div class="bf-field">
+              <label for="op2-name">Nombre y Apellido *</label>
+              <input id="op2-name" name="name" type="text" autocomplete="name" required maxlength="100" placeholder="Ej: Dr. Martín Morales" />
+            </div>
+            <div class="bf-field">
+              <label for="op2-phone">Teléfono / WhatsApp *</label>
+              <input id="op2-phone" name="phone" type="tel" autocomplete="tel" required maxlength="30" placeholder="Ej: +54 9 351 6816010" />
+            </div>
+          </div>
+          <div class="bf-form-row">
+            <div class="bf-field">
+              <label for="op2-email">Correo Electrónico *</label>
+              <input id="op2-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="nombre@correo.com" />
+            </div>
+            <div class="bf-field">
+              <label for="op2-service">Tipo de Consulta / Servicio *</label>
+              <select id="op2-service" name="service" required>
+                <option value="">Seleccione una opción...</option>
+                {site.op2.formServices.map((option) => <option value={option[0]}>{option[1]}</option>)}
+              </select>
+            </div>
+          </div>
+          <div class="bf-field">
+            <label for="op2-location">Barrio / Localidad del Inmueble (o Fuero Judicial si aplica)</label>
+            <input id="op2-location" name="location" type="text" maxlength="120" placeholder="Ej: Nueva Córdoba, Cerro de las Rosas, Fuero Civil 5ª Nominación..." />
+          </div>
+          <div class="bf-field">
+            <label for="op2-message">Detalle del Inmueble o Causa Judicial *</label>
+            <textarea id="op2-message" name="message" rows="4" required maxlength="1200" placeholder="Describa brevemente la propiedad, número de expediente judicial o consulta técnica a resolver..."></textarea>
+          </div>
+          <label class="bf-check">
+            <input id="op2-terms" name="terms" type="checkbox" required />
+            <span>Acepto el tratamiento ético y confidencial de mis datos conforme a la normativa profesional y de secreto profesional del CPCPI Córdoba (Ley 9445).</span>
+          </label>
+          <button class="bf-btn bf-btn-primary bf-form-submit" type="submit">
+            <span class="material-symbols-outlined" aria-hidden="true">send</span>Enviar Consulta Profesional
+          </button>
+          <div class="bf-form-feedback" id="op2-form-feedback" role="status" hidden>
+            <strong><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>¡Consulta recibida con éxito!</strong>
+            Susana Kaloustian se comunicará directamente para evaluar su requerimiento técnico.
+          </div>
+        </form>
       </div>
     </div>
   </section>
 </div>
+
+<script>
+  const propertyGrid = document.querySelector<HTMLElement>("[data-properties-grid]");
+  const propertyCards = Array.from(
+    document.querySelectorAll<HTMLElement>(".bf-property"),
+  );
+  const emptyState = document.querySelector<HTMLElement>("[data-properties-empty]");
+  const tabs = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-filter-tab]"),
+  );
+  const selects = Array.from(
+    document.querySelectorAll<HTMLSelectElement>("[data-filter]"),
+  );
+  let activeTab = "Todas";
+
+  const applyPropertyFilters = () => {
+    let visible = 0;
+    propertyCards.forEach((card) => {
+      const matchesTab =
+        activeTab === "Todas" || card.dataset.category === activeTab;
+      const matchesSelects = selects.every((select) => {
+        const value = select.value;
+        const key = select.dataset.filter as "type" | "zone" | "bedrooms";
+        const firstOption = select.options[0]?.value ?? "";
+        return value === firstOption || card.dataset[key] === value;
+      });
+      const show = matchesTab && matchesSelects;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    if (emptyState) emptyState.hidden = visible !== 0;
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      activeTab = tab.dataset.filterTab ?? "Todas";
+      tabs.forEach((item) =>
+        item.setAttribute("aria-pressed", String(item === tab)),
+      );
+      applyPropertyFilters();
+    });
+  });
+  document
+    .querySelector<HTMLButtonElement>("[data-filter-apply]")
+    ?.addEventListener("click", applyPropertyFilters);
+  if (propertyGrid) applyPropertyFilters();
+
+  const form = document.getElementById("op2-contact-form") as HTMLFormElement | null;
+  const feedback = document.getElementById("op2-form-feedback");
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    feedback?.removeAttribute("hidden");
+    form.reset();
+  });
+</script>
