@@ -1358,7 +1358,7 @@ a.contact-value:hover {
 .bf-panel :focus-visible { outline: 2px solid var(--bf-secondary); outline-offset: 3px; }
 
 /* Option 3 — premium / dark */
-.op3-scroll-video-wrap {
+.option-panel[data-option-panel="op3"] {
   position: relative;
   isolation: isolate;
 }
@@ -1375,15 +1375,15 @@ a.contact-value:hover {
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  opacity: 0.28;
+  opacity: 0.52;
   display: block;
 }
 .op3-scroll-video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15,28,46,0.35) 0%, rgba(247,244,239,0.18) 45%, rgba(247,244,239,0.3) 100%);
+  background: linear-gradient(180deg, rgba(15,28,46,0.25) 0%, rgba(247,244,239,0.08) 45%, rgba(247,244,239,0.12) 100%);
 }
-.op3-scroll-video-wrap > section {
+.option-panel[data-option-panel="op3"] > section {
   position: relative;
   z-index: 1;
 }
@@ -1442,7 +1442,7 @@ a.contact-value:hover {
 .op3-floating-stat strong { display: block; font-family: var(--serif); font-size: 2.2rem; line-height: 1; }
 .op3-floating-stat span { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 
-.op3-properties { background: rgba(247,244,239,0.72); backdrop-filter: blur(2px); }
+.op3-properties { background: rgba(247,244,239,0.42); backdrop-filter: blur(1px); }
 .op3-section-head { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 2.5rem; }
 .op3-section-head-center { flex-direction: column; align-items: center; text-align: center; }
 .op3-section-head-center .op3-section-note { text-align: center; max-width: 36rem; }
@@ -1467,7 +1467,7 @@ a.contact-value:hover {
 .op3-property-link { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 0.2rem; }
 .op3-property-link:hover { color: var(--accent-deep); }
 
-.op3-about { background: #fff; }
+.op3-about { background: rgba(255,255,255,0.55); backdrop-filter: blur(1px); }
 .op3-about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; align-items: center; }
 .op3-about-images { position: relative; padding: 0 3rem 3rem 0; }
 .op3-about-main { width: 100%; max-height: 560px; object-fit: cover; object-position: center 20%; display: block; }
@@ -1487,7 +1487,7 @@ a.contact-value:hover {
 .op3-college-card p { margin-top: 0.25rem; font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
 .op3-college-card strong { color: var(--text); font-weight: 600; }
 
-.op3-local { background: var(--bg-soft); }
+.op3-local { background: rgba(239,234,225,0.5); backdrop-filter: blur(1px); }
 .op3-local-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 2rem; }
 .op3-map-card { background: #fff; border: 1px solid rgba(24,34,49,0.07); padding: 1.5rem; }
 .op3-map-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; margin-bottom: 1.25rem; }
@@ -1521,7 +1521,7 @@ a.contact-value:hover {
 .op3-service-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; color: #fff; }
 .op3-service-item p { font-size: 0.9rem; line-height: 1.65; color: rgba(247,244,239,0.72); }
 
-.op3-contact { background: #0f1c2e; color: var(--text-inverse); }
+.op3-contact { background: rgba(15,28,46,0.72); color: var(--text-inverse); backdrop-filter: blur(1px); }
 .op3-contact h2 { color: var(--text-inverse); margin-bottom: 1rem; }
 .op3-contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 460px); gap: 3rem; align-items: start; }
 .op3-contact-lead { color: rgba(247,244,239,0.78); line-height: 1.8; margin-bottom: 2rem; max-width: 34rem; }
@@ -1679,27 +1679,29 @@ body[data-font="warm"],
 /* OP2 theme tokens are defined with the Botanical Editorial layout above. */
 
 /* OP3 theme overrides */
-.option-panel[data-theme="terra"] .op3-hero, .option-panel[data-theme="terra"] .op3-contact { background: #4b2e2a; }
+.option-panel[data-theme="terra"] .op3-hero { background: transparent; }
+.option-panel[data-theme="terra"] .op3-contact { background: rgba(75,46,42,0.72); }
 .option-panel[data-theme="terra"] .op3-hero-bg { background: linear-gradient(115deg, rgba(75,46,42,0.68) 0%, rgba(92,61,46,0.5) 50%, rgba(75,46,42,0.68) 100%); }
-.option-panel[data-theme="terra"] .op3-scroll-video-overlay { background: linear-gradient(180deg, rgba(75,46,42,0.35) 0%, rgba(245,241,235,0.18) 45%, rgba(245,241,235,0.3) 100%); }
+.option-panel[data-theme="terra"] .op3-scroll-video-overlay { background: linear-gradient(180deg, rgba(75,46,42,0.25) 0%, rgba(245,241,235,0.08) 45%, rgba(245,241,235,0.12) 100%); }
 .option-panel[data-theme="terra"] .op3-services-panel { background: #3d251f; }
 .option-panel[data-theme="terra"] .op3-floating-stat { background: #c8814f; box-shadow: 0 12px 30px rgba(200,129,79,0.35); }
-.option-panel[data-theme="terra"] .op3-properties { background: rgba(245,241,235,0.72); }
-.option-panel[data-theme="terra"] .op3-local { background: #ebe3d8; }
-.option-panel[data-theme="terra"] .op3-about { background: #fffaf4; }
+.option-panel[data-theme="terra"] .op3-properties { background: rgba(245,241,235,0.42); }
+.option-panel[data-theme="terra"] .op3-local { background: rgba(235,227,216,0.5); }
+.option-panel[data-theme="terra"] .op3-about { background: rgba(255,250,244,0.55); }
 .option-panel[data-theme="terra"] .op3-property-price, .option-panel[data-theme="terra"] .op3-eyebrow-dark, .option-panel[data-theme="terra"] .op3-cred-label, .option-panel[data-theme="terra"] .op3-service-idx, .option-panel[data-theme="terra"] .op3-contact-row span:first-child, .option-panel[data-theme="terra"] .op3-map-head a,
 .option-panel[data-theme="terra"] .op3-map-listing-status { color: #a8683a; }
 .option-panel[data-theme="terra"] .op3-map-listing.is-active { border-color: #c8814f; box-shadow: inset 0 0 0 1px #c8814f; }
 .option-panel[data-theme="terra"] .op3-property-link { border-bottom-color: #c8814f; }
 
-.option-panel[data-theme="forest"] .op3-hero, .option-panel[data-theme="forest"] .op3-contact { background: #2f5d50; }
+.option-panel[data-theme="forest"] .op3-hero { background: transparent; }
+.option-panel[data-theme="forest"] .op3-contact { background: rgba(47,93,80,0.72); }
 .option-panel[data-theme="forest"] .op3-hero-bg { background: linear-gradient(115deg, rgba(47,93,80,0.68) 0%, rgba(58,99,89,0.5) 50%, rgba(36,73,63,0.68) 100%); }
-.option-panel[data-theme="forest"] .op3-scroll-video-overlay { background: linear-gradient(180deg, rgba(47,93,80,0.35) 0%, rgba(244,245,240,0.18) 45%, rgba(244,245,240,0.3) 100%); }
+.option-panel[data-theme="forest"] .op3-scroll-video-overlay { background: linear-gradient(180deg, rgba(47,93,80,0.25) 0%, rgba(244,245,240,0.08) 45%, rgba(244,245,240,0.12) 100%); }
 .option-panel[data-theme="forest"] .op3-services-panel { background: #24493f; }
 .option-panel[data-theme="forest"] .op3-floating-stat { background: #c8956c; box-shadow: 0 12px 30px rgba(200,149,108,0.35); }
-.option-panel[data-theme="forest"] .op3-properties { background: rgba(244,245,240,0.72); }
-.option-panel[data-theme="forest"] .op3-local { background: #e7ebe0; }
-.option-panel[data-theme="forest"] .op3-about { background: #fbfcf9; }
+.option-panel[data-theme="forest"] .op3-properties { background: rgba(244,245,240,0.42); }
+.option-panel[data-theme="forest"] .op3-local { background: rgba(231,235,224,0.5); }
+.option-panel[data-theme="forest"] .op3-about { background: rgba(251,252,249,0.55); }
 .option-panel[data-theme="forest"] .op3-property-price, .option-panel[data-theme="forest"] .op3-eyebrow-dark, .option-panel[data-theme="forest"] .op3-cred-label, .option-panel[data-theme="forest"] .op3-service-idx, .option-panel[data-theme="forest"] .op3-contact-row span:first-child, .option-panel[data-theme="forest"] .op3-map-head a,
 .option-panel[data-theme="forest"] .op3-map-listing-status { color: #a87a54; }
 .option-panel[data-theme="forest"] .op3-map-listing.is-active { border-color: #c8956c; box-shadow: inset 0 0 0 1px #c8956c; }

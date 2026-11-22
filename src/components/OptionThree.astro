@@ -1,7 +1,7 @@
 ---
 import { site } from "../data/site";
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const op3BgVideo = `${base}/videospublic/Modern_minimalist_house_panning_…_65de1142.mp4`;
+const op3BgVideo = `${base}/videospublic/Modern_minimalist_house_panning_…_65de1142_scrub.mp4`;
 
 const featuredProperties = [
   {
@@ -43,19 +43,17 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
 ---
 
 <div class="option-panel" data-option-panel="op3" data-theme="luxury" data-font="editorial" hidden aria-hidden="true">
-  <div class="op3-scroll-video-wrap" data-op3-scroll-wrap>
-    <div class="op3-scroll-video-bg" aria-hidden="true">
-      <video
-        class="op3-scroll-video"
-        data-op3-scroll-video
-        muted
-        playsinline
-        preload="auto"
-        src={op3BgVideo}
-      ></video>
-      <div class="op3-scroll-video-overlay"></div>
-    </div>
-
+  <div class="op3-scroll-video-bg" aria-hidden="true">
+    <video
+      class="op3-scroll-video"
+      data-op3-scroll-video
+      muted
+      playsinline
+      preload="auto"
+      src={op3BgVideo}
+    ></video>
+    <div class="op3-scroll-video-overlay"></div>
+  </div>
   <section class="op3-hero" id="inicio-op3">
     <div class="op3-hero-bg" aria-hidden="true"></div>
     <div class="wrap op3-hero-grid">
@@ -329,7 +327,6 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
       </div>
     </div>
   </section>
-  </div>
 </div>
 
 <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -370,39 +367,34 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
       }).observe(panel, { attributes: true, attributeFilter: ['hidden', 'aria-hidden'] });
     }
 
-    const scrollWrap = document.querySelector("[data-op3-scroll-wrap]");
-    const scrollVideo = scrollWrap?.querySelector("[data-op3-scroll-video]");
-    if (scrollWrap && scrollVideo) {
-      let target = 0;
+    const op3Panel = document.querySelector('[data-option-panel="op3"]');
+    const scrollVideo = op3Panel?.querySelector("[data-op3-scroll-video]");
+    if (op3Panel && scrollVideo) {
       let raf = 0;
       const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+      scrollVideo.pause();
 
       const update = () => {
         raf = 0;
         if (!scrollVideo.duration) return;
-        const rect = scrollWrap.getBoundingClientRect();
-        const scrollable = Math.max(1, rect.height - window.innerHeight);
-        const progress = clamp(-rect.top / scrollable, 0, 1);
-        target = progress * scrollVideo.duration;
-        const diff = target - scrollVideo.currentTime;
-        if (Math.abs(diff) > 0.01) {
-          scrollVideo.currentTime += diff * 0.18;
-          raf = requestAnimationFrame(update);
-        } else {
+        const rect = op3Panel.getBoundingClientRect();
+        const panelTop = window.scrollY + rect.top;
+        const scrollable = Math.max(1, op3Panel.offsetHeight - window.innerHeight);
+        const progress = clamp((window.scrollY - panelTop) / scrollable, 0, 1);
+        const target = progress * scrollVideo.duration;
+        if (Math.abs(target - scrollVideo.currentTime) > 0.04) {
           scrollVideo.currentTime = target;
         }
       };
 
-      const requestUpdate = () => { if (!raf) raf = requestAnimationFrame(update); };
+      const requestUpdate = () => {
+        if (op3Panel.hidden || op3Panel.getAttribute("aria-hidden") !== "false") return;
+        if (!raf) raf = requestAnimationFrame(update);
+      };
       scrollVideo.addEventListener("loadedmetadata", requestUpdate);
       window.addEventListener("scroll", requestUpdate, { passive: true });
       window.addEventListener("resize", requestUpdate);
-      const panel = scrollWrap.closest("[data-option-panel]");
-      if (panel) {
-        new MutationObserver(() => {
-          if (!panel.hidden && panel.getAttribute("aria-hidden") === "false") requestUpdate();
-        }).observe(panel, { attributes: true, attributeFilter: ["hidden", "aria-hidden"] });
-      }
+      new MutationObserver(requestUpdate).observe(op3Panel, { attributes: true, attributeFilter: ["hidden", "aria-hidden"] });
       requestUpdate();
     }
 
