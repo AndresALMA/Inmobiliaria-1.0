@@ -370,27 +370,46 @@ const mapLink = "https://www.google.com/maps/search/?api=1&query=C%C3%B3rdoba%2C
     const op3Panel = document.querySelector('[data-option-panel="op3"]');
     const scrollVideo = op3Panel?.querySelector("[data-op3-scroll-video]");
     if (op3Panel && scrollVideo) {
-      let raf = 0;
       const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const isMobileVideo = () => window.matchMedia("(max-width: 760px), (pointer: coarse)").matches;
       scrollVideo.pause();
 
-      const update = () => {
-        raf = 0;
+      let ticking = false;
+      const syncDesktop = () => {
+        ticking = false;
         if (!scrollVideo.duration) return;
         const rect = op3Panel.getBoundingClientRect();
         const panelTop = window.scrollY + rect.top;
         const scrollable = Math.max(1, op3Panel.offsetHeight - window.innerHeight);
         const progress = clamp((window.scrollY - panelTop) / scrollable, 0, 1);
         const target = progress * scrollVideo.duration;
-        if (Math.abs(target - scrollVideo.currentTime) > 0.04) {
+        if (Math.abs(target - scrollVideo.currentTime) > 0.033) {
           scrollVideo.currentTime = target;
         }
       };
 
       const requestUpdate = () => {
         if (op3Panel.hidden || op3Panel.getAttribute("aria-hidden") !== "false") return;
-        if (!raf) raf = requestAnimationFrame(update);
+        if (reduceMotion) {
+          scrollVideo.pause();
+          scrollVideo.removeAttribute("autoplay");
+          return;
+        }
+        if (isMobileVideo()) {
+          scrollVideo.loop = true;
+          const playPromise = scrollVideo.play();
+          if (playPromise && typeof playPromise.catch === "function") playPromise.catch(() => {});
+          return;
+        }
+        scrollVideo.loop = false;
+        scrollVideo.pause();
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(syncDesktop);
+        }
       };
+
       scrollVideo.addEventListener("loadedmetadata", requestUpdate);
       window.addEventListener("scroll", requestUpdate, { passive: true });
       window.addEventListener("resize", requestUpdate);

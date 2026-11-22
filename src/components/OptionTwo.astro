@@ -62,8 +62,18 @@ const mapSrc =
           </div>
         </div>
         <div class="bf-endorsement">
-          <span class="bf-icon-circle bf-icon-circle--teal" aria-hidden="true"><span class="material-symbols-outlined">account_balance</span></span>
-          <p>Miembro activa del <strong>Colegio Profesional de Martilleros y Corredores Públicos de la Provincia de Córdoba</strong> con estricto cumplimiento de la Ley Provincial N° 9445.</p>
+          <img
+            class="bf-endorsement-logo"
+            src={site.colegioLogo.src}
+            alt={site.colegioLogo.alt}
+            width="1200"
+            height="630"
+            loading="lazy"
+          />
+          <div>
+            <span class="bf-mini-label">{site.colegio.label}</span>
+            <p>{site.colegio.description} Matrícula <strong>{site.license}</strong>.</p>
+          </div>
         </div>
       </div>
       <div class="bf-profile-copy">
